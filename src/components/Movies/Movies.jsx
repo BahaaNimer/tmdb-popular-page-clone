@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import axios from '../../axios.js';
+import SortBy from '../SortBy/SortBy.jsx';
 import './Movies.css';
 
 function Movies({ title, fetchUrl }) {
@@ -28,6 +29,7 @@ function Movies({ title, fetchUrl }) {
 
   return (
     <div className='movies'>
+      <SortBy />
       <h2 className='category-title'>{title}</h2>
       <div className='row-posters'>
         {movies.map((movie) => {
