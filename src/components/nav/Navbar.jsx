@@ -39,7 +39,7 @@ function Navbar() {
         </a>
 
         <div className='nav-list-container'>
-          <ul>
+          <ul className='toggle_size'>
             <li>
               <a href='/'>Movies</a>
             </li>
@@ -57,7 +57,7 @@ function Navbar() {
             </li>
           </ul>
 
-          <ul>
+          <ul className='toggle'>
             <li>
               <a href='/'>
                 <b>

@@ -9,6 +9,7 @@ a {
 
 .blue-bg {
   background-color: #032541;
+  width: 100%;
 }
 
 .small-font-opac {
@@ -20,4 +21,32 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
 }
+h2 {
+  position: relative;
+  margin: 50px;
+  z-index: 1;
+  transform: translate(10px, 70px);
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.app_container {
+  display: flex;
+  gap: 50px;
+}
+
+.sort_section {
+  width: 15%;
+  min-width: 250px;
+}
+
+/* .movies_section {
+  width: 80%;
+} */

@@ -24,7 +24,7 @@ nav {
 .nav-list-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
 }
 
@@ -58,6 +58,7 @@ nav {
 
 .nav-list-container ul li a {
   color: #fff;
+  white-space: nowrap;
 }
 
 .box-visible {
@@ -75,4 +76,17 @@ nav {
 
 #plus {
   font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .toggle {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 768px) {
+  .toggle_size {
+    display: flex;
+    justify-content: space-between;
+  }
 }
