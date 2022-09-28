@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { CircularProgressBar } from '@tomik23/react-circular-progress-bar';
 
 import axios from '../API/axios.js';
+import { ButtonLoadMore } from '../Share/Buttons/Button';
+import { Card } from '../Share/Card/Card.js';
 import './Movies.css';
 import LoadingSkeleton from '../Utilty/loadingSkeleton.js';
 import 'react-loading-skeleton/dist/skeleton.css';
@@ -40,7 +42,7 @@ function Movies({ fetchUrl }) {
   };
 
   return (
-    <div className='container'>
+    <Card className='container'>
       <div className='row-posters'>
         {movies.length ? (
           movies.map((movie) => {
@@ -91,14 +93,14 @@ function Movies({ fetchUrl }) {
             <LoadingSkeleton />
           </div>
         )}
-        <button
+        <ButtonLoadMore
           className='load-more'
           onClick={loadMoreHandler}>
           Load More
-        </button>
+        </ButtonLoadMore>
         <div className='row-posters-blur'></div>
       </div>
-    </div>
+    </Card>
   );
 }
 

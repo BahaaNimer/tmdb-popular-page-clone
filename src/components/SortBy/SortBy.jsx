@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { Button } from '../Share/Buttons/Button';
 import './SortBy.css';
 
 const SortBy = ({ setDataSortedBy }) => {
@@ -53,7 +54,7 @@ const SortBy = ({ setDataSortedBy }) => {
             </select>
           </div>
         </details>
-        <button onClick={sendDataHandler}>Search</button>
+        <Button onClick={sendDataHandler}>Search</Button>
       </div>
     </>
   );
