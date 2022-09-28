@@ -19,7 +19,8 @@
     "react-lazy-load-image-component": "^1.5.5",
     "react-loading-skeleton": "^3.1.0",
     "react-router-dom": "^6.4.1",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "styled-components": "^5.3.6"
   },
   "scripts": {
     "start": "react-dotenv && react-scripts start",
