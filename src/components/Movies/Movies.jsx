@@ -8,39 +8,46 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 function Movies({ fetchUrl }) {
   const [movies, setMovies] = useState([]);
-  const [trailerUrl, setTrailerUrl] = useState('');
+  const [page, setPage] = useState(1);
 
   const imageBaseUrl = 'https://image.tmdb.org/t/p/original';
 
   useEffect(() => {
     async function fetchData() {
-      const request = await axios.get(fetchUrl);
-      setMovies(request.data.results);
+      const request = await axios.get(`${fetchUrl}`);
+      let movieData = request.data.results;
+      setMovies(movieData);
       return request;
     }
-    // console.log('fetchURL', fetchUrl);
     fetchData();
   }, [fetchUrl]);
 
-  const handleClick = () => {
-    if (trailerUrl) {
-      setTrailerUrl('');
+  useEffect(() => {
+    async function fetchData() {
+      const request = await axios.get(`${fetchUrl}&page=${page}`);
+      let movieData = request.data.results;
+      setMovies([...movies, ...movieData]);
+
+      return request;
     }
+    fetchData();
+  }, [page]);
+
+  const loadMoreHandler = () => {
+    setPage(page + 1);
+    console.log('page :>> ', page);
   };
 
   return (
     <div className='container'>
       <div className='row-posters'>
         {movies.length ? (
-          movies.sort().map((movie) => {
+          movies.map((movie) => {
             return (
               <div
                 key={movie.id}
                 className='each-movie-box'>
                 <img
-                  onClick={() => {
-                    handleClick(movie);
-                  }}
                   className={`row-poster`}
                   src={
                     `${imageBaseUrl}${movie?.poster_path}` ||
@@ -83,6 +90,11 @@ function Movies({ fetchUrl }) {
             <LoadingSkeleton />
           </div>
         )}
+        <button
+          className='load-more'
+          onClick={loadMoreHandler}>
+          Load More
+        </button>
         <div className='row-posters-blur'></div>
       </div>
     </div>

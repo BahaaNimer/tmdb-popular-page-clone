@@ -13,8 +13,6 @@ function App() {
   const handleSortBy = (data) => {
     setDataSort(data);
   };
-  // console.log('dataSort :>>', dataSort);
-  // console.log('fetchRatingDesc :>>', requests.fetchRatingDesc);
 
   return (
     <div className='App'>
@@ -40,9 +38,9 @@ function App() {
                 : dataSort === 'Release Date Ascending'
                 ? requests.fetchReleaseDateAsce
                 : dataSort === 'Title (Z-A)'
-                ? requests.fetchTitleDesc
-                : dataSort === 'Title (A-Z)'
                 ? requests.fetchTitleAsce
+                : dataSort === 'Title (A-Z)'
+                ? requests.fetchTitleDesc
                 : requests.fetchPopular
             }
           />

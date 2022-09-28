@@ -24,14 +24,6 @@
   margin-bottom: 30px;
 }
 
-/* .footer-nav div {
-  margin-right: 4%;
-}
-
-.footer-nav div:last-child {
-  margin-right: 0;
-} */
-
 .footer-nav div h5 {
   margin: 0;
   font-size: 1.1rem;
@@ -49,7 +41,6 @@
 }
 
 .footer-nav div ul li a {
-  /* font-size: 1.2rem; */
   color: #fff;
 }
 
@@ -63,7 +54,6 @@
   border: 2px solid white;
   padding: 10px;
   position: relative;
-  /* left: -50%; */
   height: max-content;
   width: max-content;
 }
@@ -87,7 +77,11 @@ footer section {
 }
 
 @media (max-width: 717px) {
+  .join-community {
+    display: none;
+  }
+
   .link-section {
-    visibility: hidden;
+    margin: 5%;
   }
 }

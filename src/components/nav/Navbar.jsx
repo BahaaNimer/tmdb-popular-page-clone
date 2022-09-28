@@ -41,7 +41,19 @@ function Navbar() {
         <div className='nav-list-container'>
           <ul className='toggle_size'>
             <li>
-              <a href='/'>Movies</a>
+              <a href='/'>
+                <div class='dropdown'>
+                  <a class='drop'>
+                    Movies
+                  </a>
+                  <div class='dropdown-content'>
+                    <a href='#'>Popular</a>
+                    <a href='#'>Now Playing</a>
+                    <a href='#'>Upcoming</a>
+                    <a href='#'>Top Rated</a>
+                  </div>
+                </div>{' '}
+              </a>
             </li>
 
             <li>

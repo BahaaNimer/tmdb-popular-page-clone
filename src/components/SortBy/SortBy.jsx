@@ -6,14 +6,13 @@ const SortBy = ({ setDataSortedBy }) => {
   const [sortBy, setSortBy] = useState('Popularity Descending');
 
   const handleSubmit = (event) => {
-    // console.log('event :>> ', event.target.value);
     setSortBy(event.target.value);
   };
 
   const sendDataHandler = () => {
     const data = localStorage.getItem('sortBy');
+
     setDataSortedBy(data);
-    // window.location.reload(false);
   };
 
   useEffect(() => {
