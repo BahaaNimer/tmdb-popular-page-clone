@@ -31,6 +31,7 @@ function Movies({ fetchUrl }) {
       return request;
     }
     fetchData();
+    // eslint-disable-next-line
   }, [page]);
 
   const loadMoreHandler = () => {
