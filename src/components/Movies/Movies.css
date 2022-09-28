@@ -6,7 +6,7 @@
   flex-wrap: wrap;
   top: 50px;
   margin-bottom: 50px;
-  width: 100%;
+  width: 80%;
 }
 
 .circular-progress-bar {
@@ -17,9 +17,8 @@
 .row-posters {
   display: flex;
   overflow-y: hidden;
-  padding-left: 5%;
   flex-wrap: wrap;
-  width: 95%;
+  width: 100%;
 }
 
 .row-posters-blur {
@@ -43,7 +42,7 @@
   align-content: flex-start;
   box-sizing: border-box;
   box-shadow: 0 0 0 0.26px;
-  width: 230px;
+  width: 200px;
   height: 415px;
   border-radius: 10px;
 }

@@ -12,8 +12,8 @@
   width: 30%;
   display: flex;
   flex-direction: column;
-  margin-right: 100px;
-  margin-left: 200px;
+  margin-right: 10px;
+  margin-left: 400px;
 }
 
 .join-community img {
@@ -73,7 +73,7 @@ footer section {
 .link-section {
   width: 100%;
   display: flex;
-  gap: 10px;
+  gap: 15px;
 }
 
 @media (max-width: 717px) {

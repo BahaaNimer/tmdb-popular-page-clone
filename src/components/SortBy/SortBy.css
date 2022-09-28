@@ -8,6 +8,7 @@
   padding-left: 50px;
   flex-direction: column;
   height: 100%;
+  padding-left: 150px;
 }
 
 details {
@@ -83,7 +84,7 @@ button {
   color: #eee;
   border-style: none;
   padding: 10px;
-  width: 100%;
+  width: 200px;
   font-size: larger;
   font-weight: 700;
 }
