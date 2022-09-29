@@ -10,7 +10,7 @@ export const Button = styled.button`
   color: #eee;
   border-style: none;
   padding: 10px;
-  width: 200px;
+  width: 80%;
   font-size: larger;
   font-weight: 700;
 
@@ -29,16 +29,36 @@ export const Button = styled.button`
 `;
 
 export const ButtonLoadMore = styled(Button)`
-  transform: translate(15px, 1px);
+  transform: translate(-65px, 1px);
   position: relative;
   margin-top: 10px;
   margin-bottom: 10px;
-  padding: 5px;
-  width: 85%;
+  margin-right: 7%;
+  width: 81%;
   border-radius: 10px;
   height: 45px;
   background-color: #01b4e4;
   color: #eee;
   font-size: x-large;
   font-weight: 700;
+
+  @media (max-width: 1300px) {
+    margin-left: 10%;
+    width: 95%;
+  }
+
+  @media (max-width: 800px) {
+    margin-left: 15%;
+    width: 100%;
+  }
+
+  @media (max-width: 530px) {
+    margin-left: 20%;
+    width: 100%;
+  }
+
+  @media (max-width: 475px) {
+    margin-left: 30%;
+    width: 100%;
+  }
 `;

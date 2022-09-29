@@ -1,46 +1,71 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const SmallHeader = styled.h5`
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+`;
+
+const FooterList = styled.ul`
+  margin: 2px 0 0 0;
+`;
+
+const FooterItem = styled.li`
+  list-style: none;
+  line-height: 1.6rem;
+`;
+
+const FooterLink = styled.a`
+  color: #fff;
+`;
 
 function Column(props) {
   return (
     <div>
-      <h5 className=''>{props.title}</h5>
-      <ul>
-        <li>
-          <a
+      <SmallHeader className=''>{props.title}</SmallHeader>
+      <FooterList>
+        <FooterItem>
+          <FooterLink
             className=''
             href='#!'>
             {props.link1}
-          </a>
-        </li>
-        <li>
-          <a
+          </FooterLink>
+        </FooterItem>
+
+        <FooterItem>
+          <FooterLink
             className=''
             href='#!'>
             {props.link2}
-          </a>
-        </li>
-        <li>
-          <a
+          </FooterLink>
+        </FooterItem>
+
+        <FooterItem>
+          <FooterLink
             className=''
             href='#!'>
             {props.link3}
-          </a>
-        </li>
-        <li>
-          <a
+          </FooterLink>
+        </FooterItem>
+
+        <FooterItem>
+          <FooterLink
             className=''
             href='#!'>
             {props.link4}
-          </a>
-        </li>
-        <li>
-          <a
+          </FooterLink>
+        </FooterItem>
+
+        <FooterItem>
+          <FooterLink
             className=''
             href='#!'>
             {props.link5}
-          </a>
-        </li>
-      </ul>
+          </FooterLink>
+        </FooterItem>
+      </FooterList>
     </div>
   );
 }
