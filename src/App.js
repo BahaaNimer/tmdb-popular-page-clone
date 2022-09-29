@@ -1,53 +1,87 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import Navbar from './components/nav/Navbar';
+import FetchContextProvider from './components/API/fetch';
+import Navbar from './components/Navbar/Navbar';
 import Movies from './components/Movies/Movies';
 import Footer from './components/Footer/Footer';
-import requests from './components/API/requests';
 import SortBy from './components/SortBy/SortBy';
-import './App.css';
+import styled from 'styled-components';
+
+const AppBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+`;
+
+const AppHolder = styled.div`
+  display: flex;
+
+  @media (max-width: 1300px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+const Title = styled.h2`
+  position: relative;
+  margin: 50px;
+  z-index: 1;
+  transform: translate(10px, 70px);
+  padding-left: 100px;
+
+  @media (max-width: 485px) {
+    margin-top: 50px;
+    z-index: 0;
+    padding: 0;
+  }
+`;
+
+const SortSection = styled.section`
+  width: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+
+  @media (max-width: 1300px) {
+    width: 100%;
+    height: 300px;
+  }
+`;
+
+const MoviesSection = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 70%;
+
+  @media (max-width: 1300px) {
+    width: 100%;
+    align-items: center;
+  }
+`;
 
 function App() {
-  const [dataSort, setDataSort] = useState('Popularity Descending');
-
-  const handleSortBy = (data) => {
-    setDataSort(data);
-  };
-
   return (
-    <div className='App'>
-      <Navbar />
-      <h2>Popular Movies</h2>
-      <div className='app_container'>
-        <section className='sort_section'>
-          <SortBy setDataSortedBy={handleSortBy} />
-        </section>
-        <section className='movies_section'>
-          <Movies
-            fetchUrl={
-              dataSort === 'Popularity Descending'
-                ? requests.fetchPopularDesc
-                : dataSort === 'Popularity Ascending'
-                ? requests.fetchPopularAsce
-                : dataSort === 'Rating Descending'
-                ? requests.fetchRatingDesc
-                : dataSort === 'Rating Ascending'
-                ? requests.fetchRatingAsce
-                : dataSort === 'Release Date Descending'
-                ? requests.fetchReleaseDateDesc
-                : dataSort === 'Release Date Ascending'
-                ? requests.fetchReleaseDateAsce
-                : dataSort === 'Title (Z-A)'
-                ? requests.fetchTitleAsce
-                : dataSort === 'Title (A-Z)'
-                ? requests.fetchTitleDesc
-                : requests.fetchPopular
-            }
-          />
-        </section>
-      </div>
-      <Footer />
-    </div>
+    <FetchContextProvider>
+      <AppBody>
+        <Navbar />
+
+        <Title>Popular Movies</Title>
+
+        <AppHolder>
+          <SortSection>
+            <SortBy />
+          </SortSection>
+
+          <MoviesSection>
+            <Movies />
+          </MoviesSection>
+        </AppHolder>
+
+        <Footer />
+      </AppBody>
+    </FetchContextProvider>
   );
 }
 

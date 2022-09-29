@@ -1,7 +1,26 @@
 body {
-  font-family: "Source Sans Pro", Arial, sans-serif;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
 }
 
 body * {
   box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.blue-bg {
+  background-color: #032541;
+  width: 100%;
+}
+
+.small-font-opac {
+  font-size: 0.7rem;
+  opacity: 0.2;
 }
