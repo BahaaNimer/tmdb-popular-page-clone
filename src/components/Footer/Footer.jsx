@@ -2,25 +2,28 @@ import React from 'react';
 import Column from './Column';
 import footerLogo from '../../assets/moviesdb_footer.svg';
 import styled from 'styled-components';
+import { styles } from '../../styles/styles';
 
 const FooterNav = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 9% 0%;
-  height: 50%;
-  width: 100%;
+  padding: ${(props) => props.styles.padding.p9}
+    ${(props) => props.styles.padding.p0};
+  height: ${(props) => props.styles.height.h50};
+  width: ${(props) => props.styles.width.w100};
+  margin-left: ${(props) => props.styles.margin.m20};
 `;
 
 const JoinSection = styled.div`
   position: relative;
-  width: 30%;
+  width: ${(props) => props.styles.width.w30};
   display: flex;
   flex-direction: column;
-  margin-right: 2%;
-  margin-left: 10%;
+  margin-right: ${(props) => props.styles.margin.m2};
+  margin-left: ${(props) => props.styles.margin.m10};
 
-  @media (max-width: 717px) {
+  @media (max-width: ${(props) => props.styles.max_width.w717}) {
     display: none;
   }
 `;
@@ -29,19 +32,19 @@ const Image = styled.img`
   position: relative;
   right: -1px;
   top: -14%;
-  margin-top: 5px;
-  margin-bottom: 30px;
+  margin-top: ${(props) => props.styles.margin.m5x};
+  margin-bottom: ${(props) => props.styles.margin.m30x};
 `;
 
 const JoinButton = styled.a`
   background-color: white;
-  color: rgb(1, 180, 228);
-  font-weight: bold;
-  font-size: 1rem;
-  border-radius: 5px;
+  color: ${(props) => props.styles.color.l_blue};
+  font-weight: ${(props) => props.styles.font_weight.b};
+  font-size: ${(props) => props.styles.font_size.fs1r};
+  border-radius: ${(props) => props.styles.border_radius.br6};
   transition: none;
   border: 2px solid white;
-  padding: 10px;
+  padding: ${(props) => props.styles.padding.p10x};
   position: relative;
   height: max-content;
   width: max-content;
@@ -52,41 +55,49 @@ const JoinButton = styled.a`
 `;
 
 const LinkSection = styled.div`
-  width: 100%;
+  width: ${(props) => props.styles.width.w100};
   display: flex;
-  gap: 15px;
+  gap: ${(props) => props.styles.gap.g15x};
 
-  @media (max-width: 717px) {
-    margin: 5%;
+  @media (max-width: ${(props) => props.styles.max_width.w717}) {
+    margin: ${(props) => props.styles.margin.m5};
   }
 `;
 
 const BottomSection = styled.section`
   text-align: center;
-  color: grey;
+  color: ${(props) => props.styles.color.n_gray};
   opacity: 0.3;
-  font-size: 0.7em;
-  font-weight: 600;
+  font-size: ${(props) => props.styles.font_size.fs07};
+  font-weight: ${(props) => props.styles.font_weight.w6};
 `;
 
 function Footer() {
   return (
     <footer className='blue-bg'>
-      <FooterNav className='footer-nav'>
-        <JoinSection className='join-community'>
+      <FooterNav
+        styles={styles}
+        className='footer-nav'>
+        <JoinSection
+          styles={styles}
+          className='join-community'>
           <Image
+            styles={styles}
             src={footerLogo}
             alt='footer-logo'
             width='130'
             height='94'
           />
           <JoinButton
+            styles={styles}
             className='footer-btn'
-            href='#!'>
+            href='/'>
             JOIN THE COMMUNITY
           </JoinButton>
         </JoinSection>
-        <LinkSection className='link-section'>
+        <LinkSection
+          styles={styles}
+          className='link-section'>
           <Column
             title='THE BASICS'
             link1='About TMDb'
@@ -117,7 +128,7 @@ function Footer() {
           />
         </LinkSection>
       </FooterNav>
-      <BottomSection>Build 87863fc (4378)</BottomSection>
+      <BottomSection styles={styles}>Build 87863fc (4378)</BottomSection>
     </footer>
   );
 }

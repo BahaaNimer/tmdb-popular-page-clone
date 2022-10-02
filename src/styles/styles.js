@@ -1,0 +1,122 @@
+export const styles = {
+  padding: {
+    p0: '0px',
+    p3x: '3px',
+    p5x: '5px',
+    p10x: '10px',
+    p12x: '12px',
+    p15x: '15px',
+    p80x: '80px',
+    p100x: '100px',
+    p150x: '150px',
+    p2: '2%',
+    p3: '3%',
+    p5: '5%',
+    p9: '9%',
+  },
+
+  margin: {
+    m0: '0px',
+    m5x: '5px',
+    m7x: '7px',
+    m15x: '15px',
+    m30x: '30px',
+    m33x: '33px',
+    m50x: '50px',
+    m70x: '70px',
+    m2: '2%',
+    m3: '3%',
+    m5: '5%',
+    m7: '7%',
+    m10: '10%',
+    m15: '15%',
+    m20: '20%',
+    m30: '30%',
+  },
+
+  border_radius: {
+    br6: '6px',
+    br10: '10px',
+    br15: '15px',
+    br50: '50%',
+  },
+
+  color: {
+    d_blue: '#032541',
+    l_blue: '#01b4e4',
+    white: '#fff',
+    l_white: '#eee',
+    l_gray: '#ced3db',
+    n_gray: 'gray',
+    green: '#1fb76d',
+    l_green: '#18cdb5',
+    dd_blue: '#081c22',
+  },
+
+  font_size: {
+    fs07r: '0.7rem',
+    fs1r: '1rem',
+    fs09r: '0.9rem',
+    fs18r: '1.8rem',
+    fs2r: '2rem',
+    fs035: '0.35em',
+    fs07: '0.7em',
+    fs1: '1em',
+  },
+
+  font_weight: {
+    b: 'bold',
+    w3: 300,
+    w4: 400,
+    w6: 600,
+    w7: 700,
+  },
+
+  line_height: {
+    lh: '1.6rem',
+  },
+
+  height: {
+    h25x: '25px',
+    h40x: '40px',
+    h45x: '45px',
+    h60x: '60px',
+    h300x: '300px',
+    h320x: '320px',
+    h415x: '415px',
+    h50: '50%',
+    h65: '65%',
+    h100: '100%',
+  },
+
+  width: {
+    w30x: '30px',
+    w60x: '60px',
+    w200x: '200px',
+    w30: '30%',
+    w35: '35%',
+    w70: '70%',
+    w80: '80%',
+    w90: '90%',
+    w95: '95%',
+    w97: '97%',
+    w100: '100%',
+  },
+
+  max_width: {
+    w475x: '475px',
+    w485x: '485px',
+    w530x: '530px',
+    w600x: '600px',
+    w717: '717px',
+    w800x: '800px',
+    w975x: '975px',
+    w1300x: '1300px',
+    w100: '100%',
+  },
+
+  gap: {
+    g15x: '15px',
+    g2: '2%',
+  },
+};

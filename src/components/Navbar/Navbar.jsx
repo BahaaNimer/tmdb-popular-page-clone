@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import logo from '../../assets/tmbd.svg';
 import styled from 'styled-components';
+import { styles } from '../../styles/styles';
 
 const Nav = styled.nav`
   z-index: 5;
   position: fixed;
   top: 0;
-  width: 100%;
+  width: ${(props) => props.styles.width.w100};
   overflow: hidden;
   transition-timing-function: ease-in;
   transition: all 0.5s;
@@ -18,31 +20,33 @@ const Nav = styled.nav`
 `;
 
 const NavigationBar = styled.div`
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 12px 5%;
+  font-size: ${(props) => props.styles.font_size.fs09r};
+  font-weight: ${(props) => props.styles.font_weight.w6};
+  padding: ${(props) => props.styles.padding.p12x}
+    ${(props) => props.styles.padding.p5};
   display: flex;
 `;
 
 const NavLogo = styled.a`
-  font-size: 2.1rem;
-  padding: 0 100px 0 80px;
+  font-size: ${(props) => props.styles.font_size.fs2r};
+  padding: 0 ${(props) => props.styles.padding.p100x} 0
+    ${(props) => props.styles.padding.p80x};
 `;
 
 const NavListContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: ${(props) => props.styles.width.w100};
 
   & ul {
     display: flex;
     list-style: none;
-    width: 100%;
+    width: ${(props) => props.styles.width.w100};
   }
 
   & ul:first-child li {
-    margin-right: 3%;
+    margin-right: ${(props) => props.styles.margin.m3};
   }
 
   & ul:last-child {
@@ -51,7 +55,7 @@ const NavListContainer = styled.div`
   }
 
   & ul:last-child li {
-    margin-left: 3%;
+    margin-left: ${(props) => props.styles.margin.m3};
   }
 
   & ul li a {
@@ -60,34 +64,35 @@ const NavListContainer = styled.div`
   }
 
   & .toggle_size {
-    @media (max-width: 975px) {
+    @media (max-width: ${(props) => props.styles.max_width.w975x}) {
       display: flex;
     }
   }
   & .toggle {
-    @media (max-width: 975px) {
+    @media (max-width: ${(props) => props.styles.max_width.w975x}) {
       display: none;
     }
   }
 
   & .toggle_size {
-    @media (max-width: 600px) {
+    @media (max-width: ${(props) => props.styles.max_width.w600x}) {
       display: none;
     }
   }
 `;
 
 const BoxVisible = styled.div`
-  width: 28px;
-  height: 26px;
+  width: ${(props) => props.styles.width.w30x};
+  height: ${(props) => props.styles.height.h25x};
   display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
   border: 1px solid #fff;
-  border-radius: 3px;
-  padding: 3px 5px;
-  font-size: 0.7rem;
+  border-radius: ${(props) => props.styles.border_radius.br6};
+  padding: ${(props) => props.styles.padding.p3x}
+    ${(props) => props.styles.padding.p5x};
+  font-size: ${(props) => props.styles.font_size.fs07r};
 `;
 
 function Navbar() {
@@ -112,9 +117,13 @@ function Navbar() {
   }, [scrollPosition]);
 
   return (
-    <Nav className={`blue-bg ${hide && 'hide-nav'}`}>
-      <NavigationBar>
-        <NavLogo href='/'>
+    <Nav
+      styles={styles}
+      className={`blue-bg ${hide && 'hide-nav'}`}>
+      <NavigationBar styles={styles}>
+        <NavLogo
+          styles={styles}
+          href='/'>
           <img
             src={logo}
             alt='logo'
@@ -123,22 +132,22 @@ function Navbar() {
           />
         </NavLogo>
 
-        <NavListContainer>
+        <NavListContainer styles={styles}>
           <ul className='toggle_size'>
             <li>
-              <a href='/'>Movies</a>
+              <Link to='/'>Movies</Link>
             </li>
 
             <li>
-              <a href='/'>TV Shows</a>
+              <Link to='/'>Tv Shows</Link>
             </li>
 
             <li>
-              <a href='/'>People</a>
+              <Link to='/'>People</Link>
             </li>
 
             <li>
-              <a href='/'>More</a>
+              <Link to='/'>More</Link>
             </li>
           </ul>
 
@@ -153,7 +162,7 @@ function Navbar() {
 
             <li>
               <a href='/'>
-                <BoxVisible>EN</BoxVisible>
+                <BoxVisible styles={styles}>EN</BoxVisible>
               </a>
             </li>
 

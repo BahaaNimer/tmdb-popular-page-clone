@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { styles } from '../../styles/styles';
 
 const SmallHeader = styled.h5`
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #fff;
+  margin: ${(props) => props.styles.margin.m0};
+  font-size: ${(props) => props.styles.font_size.fs1r};
+  font-weight: bold ${(props) => props.styles.font_weight.b};
+  color: ${(props) => props.styles.color.white};
 `;
 
 const FooterList = styled.ul`
@@ -14,54 +15,63 @@ const FooterList = styled.ul`
 
 const FooterItem = styled.li`
   list-style: none;
-  line-height: 1.6rem;
+  line-height: ${(props) => props.styles.line_height.lh};
 `;
 
 const FooterLink = styled.a`
-  color: #fff;
+  color: ${(props) => props.styles.color.white};
 `;
 
 function Column(props) {
   return (
     <div>
-      <SmallHeader className=''>{props.title}</SmallHeader>
+      <SmallHeader
+        styles={styles}
+        className=''>
+        {props.title}
+      </SmallHeader>
       <FooterList>
-        <FooterItem>
+        <FooterItem styles={styles}>
           <FooterLink
+            styles={styles}
             className=''
-            href='#!'>
+            href='/'>
             {props.link1}
           </FooterLink>
         </FooterItem>
 
-        <FooterItem>
+        <FooterItem styles={styles}>
           <FooterLink
+            styles={styles}
             className=''
-            href='#!'>
+            href='/'>
             {props.link2}
           </FooterLink>
         </FooterItem>
 
-        <FooterItem>
+        <FooterItem styles={styles}>
           <FooterLink
+            styles={styles}
             className=''
-            href='#!'>
+            href='/'>
             {props.link3}
           </FooterLink>
         </FooterItem>
 
-        <FooterItem>
+        <FooterItem styles={styles}>
           <FooterLink
+            styles={styles}
             className=''
-            href='#!'>
+            href='/'>
             {props.link4}
           </FooterLink>
         </FooterItem>
 
-        <FooterItem>
+        <FooterItem styles={styles}>
           <FooterLink
+            styles={styles}
             className=''
-            href='#!'>
+            href='/'>
             {props.link5}
           </FooterLink>
         </FooterItem>

@@ -3,21 +3,57 @@ import PropTypes from 'prop-types';
 import { CircularProgressBar } from '@tomik23/react-circular-progress-bar';
 import 'react-loading-skeleton/dist/skeleton.css';
 import LoadingSkeleton from '../../Utilty/loadingSkeleton.js';
-import { CardsContainer } from '../../Share/CardsContainer/CardsContainer';
-import { Card } from '../../Share/Card/Card.js';
 import styled from 'styled-components';
+import { styles } from '../../../styles/styles.js';
 
 const ProgressBar = styled.span`
   z-index: 1;
   transform: translate(10px, -21px);
 `;
 
+const Icon = styled.img`
+  position: absolute;
+  z-index: 10;
+  transform: translate(160px, 10px);
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 0.5;
+    border-radius: ${(props) => props.styles.border_radius.br50};
+    background-color: ${(props) => props.styles.color.l_blue};
+
+  }
+`;
+
+const CardsContainer = styled.div`
+  display: flex;
+  overflow-y: hidden;
+  flex-wrap: wrap;
+  width: ${(props) => props.styles.width.w100};
+`;
+
+const Card = styled.div`
+  margin: ${(props) => props.styles.margin.m2};
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 0 0.26px;
+  width: ${(props) => props.styles.width.w200x};
+  height: ${(props) => props.styles.height.h415x};
+  border-radius: ${(props) => props.styles.border_radius.br10};
+  @media (max-width: ${(props) => props.styles.max_width.w475x}) {
+    width: ${(props) => props.styles.width.w70};
+    margin-left: ${(props) => props.styles.margin.m70x};
+  }
+`;
+
 const RowPoster = styled.img`
-  cursor: pointer;
-  max-width: 100%;
-  height: 320px;
-  border-radius: 10px 10px 0 0;
   display: block;
+  cursor: pointer;
+  max-width: ${(props) => props.styles.max_width.w100};
+  height: ${(props) => props.styles.height.w320x};
+  max-height: ${(props) => props.styles.height.h100};
+  border-radius: ${(props) => props.styles.border_radius.br10}
+    ${(props) => props.styles.border_radius.br10} 0 0;
 
   &:hover {
     cursor: pointer;
@@ -26,24 +62,24 @@ const RowPoster = styled.img`
 `;
 
 const RowPosterContent = styled.div`
-  padding-left: 10px;
+  padding-left: ${(props) => props.styles.padding.p10x};
 `;
 
 const MovieTitle = styled.h3`
   cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 700;
+  font-size: ${(props) => props.styles.font_size.fs09r};
+  font-weight: ${(props) => props.styles.font_weight.w7};
 `;
 
 const MovieDate = styled.p`
-  padding-top: 5px;
-  font-size: 0.9rem;
+  padding-top: ${(props) => props.styles.padding.p5x};
+  font-size: ${(props) => props.styles.font_size.fs09r};
   color: rgba(0, 0, 0, 0.6);
 `;
 
 const RowPostersBlur = styled.div`
-  width: 60px;
-  height: 100%;
+  width: ${(props) => props.styles.width.w60x};
+  height: ${(props) => props.styles.height.h100};
   position: absolute;
   top: 0;
   right: 0;
@@ -59,26 +95,41 @@ const MovieItem = ({ movies }) => {
   const imageBaseUrl = 'https://image.tmdb.org/t/p/original';
 
   return (
-    <CardsContainer>
+    <CardsContainer styles={styles}>
       {movies.length ? (
         movies.map((movie) => {
           return (
-            <Card key={movie.id}>
+            <Card
+              key={movie.id}
+              styles={styles}>
+              <Icon
+                styles={styles}
+                src='https://img.icons8.com/color/48/000000/connection-status-off--v1.png'
+                alt='moreIcon'
+                width={'24px'}
+                height={'24px'}
+              />
               <RowPoster
+                styles={styles}
                 src={
-                  `${imageBaseUrl}${movie?.poster_path}` ||
-                  `${imageBaseUrl}${movie?.backdrop_path}`
+                  movie.poster_path !== null
+                    ? `${imageBaseUrl}${movie.poster_path}`
+                    : 'https://img.icons8.com/material-outlined/96/000000/image.png'
                 }
                 alt={movie.name}
               />
               <ProgressBar>
                 <CircularProgressBar
+                  styles={styles}
                   percent={movie.vote_average * 10}
-                  linearGradient={['#18cdb5', '#1fb76d']}
-                  colorSlice={'#081c22'}
-                  colorCircle={'#081c22'}
-                  fontColor={'#fff'}
-                  fontSize={'1.8rem'}
+                  linearGradient={[
+                    `${styles.color.l_green}`,
+                    `${styles.color.green}`,
+                  ]}
+                  colorSlice={`${styles.color.dd_blue}`}
+                  colorCircle={`${styles.color.dd_blue}`}
+                  fontColor={`${styles.color.white}`}
+                  fontSize={`${styles.font_size.fs18r}`}
                   fontWeight={400}
                   size={40}
                   cut={0}
@@ -86,17 +137,17 @@ const MovieItem = ({ movies }) => {
                   opacity={10}
                   fill={'#032541'}
                   unit={'%'}
-                  textPosition={'0.35em'}
+                  textPosition={`${styles.font_size.fs035}`}
                 />
               </ProgressBar>
-              <RowPosterContent>
-                <MovieTitle>
+              <RowPosterContent styles={styles}>
+                <MovieTitle styles={styles}>
                   {movie?.title ||
                     movie?.original_title ||
                     movie?.name ||
                     movie?.original_name}
                 </MovieTitle>
-                <MovieDate>{movie?.release_date}</MovieDate>
+                <MovieDate styles={styles}>{movie?.release_date}</MovieDate>
               </RowPosterContent>
             </Card>
           );
@@ -106,7 +157,7 @@ const MovieItem = ({ movies }) => {
           <LoadingSkeleton />
         </div>
       )}
-      <RowPostersBlur></RowPostersBlur>
+      <RowPostersBlur styles={styles}></RowPostersBlur>
     </CardsContainer>
   );
 };
