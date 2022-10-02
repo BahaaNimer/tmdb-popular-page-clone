@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/tmdb-popular-page-clone/static/css/main.33780615.css",
-    "main.js": "/tmdb-popular-page-clone/static/js/main.bbdb621c.js",
+    "main.js": "/tmdb-popular-page-clone/static/js/main.ce16fd6b.js",
     "static/media/moviesdb_footer.svg": "/tmdb-popular-page-clone/static/media/moviesdb_footer.de1a664e8d0777ca4ddb2a5a298bcfb6.svg",
     "static/media/tmbd.svg": "/tmdb-popular-page-clone/static/media/tmbd.bf7f470b3821af1da7fa249c87dadea3.svg",
     "index.html": "/tmdb-popular-page-clone/index.html",
     "main.33780615.css.map": "/tmdb-popular-page-clone/static/css/main.33780615.css.map",
-    "main.bbdb621c.js.map": "/tmdb-popular-page-clone/static/js/main.bbdb621c.js.map"
+    "main.ce16fd6b.js.map": "/tmdb-popular-page-clone/static/js/main.ce16fd6b.js.map"
   },
   "entrypoints": [
     "static/css/main.33780615.css",
-    "static/js/main.bbdb621c.js"
+    "static/js/main.ce16fd6b.js"
   ]
 }
