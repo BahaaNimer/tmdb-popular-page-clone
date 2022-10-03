@@ -1,29 +1,26 @@
-import React, { createContext, useContext, useState, useMemo } from 'react';
-import requests from './requests';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import env from 'react-dotenv';
+const API_KEY = env.API_KEY;
+const API_SECRET = `api_key=${API_KEY}`;
 
 export const FetchContext = createContext();
 
 const FetchContextProvider = ({ children }) => {
-  const [url, setUrl] = useState({});
-  const [dataSort, setDataSort] = useState('p_desc');
+  const [dataSort, setDataSort] = useState('popularity.desc');
+  const [url, setUrl] = useState(
+    `/discover/movie?sort_by=${dataSort}&${API_SECRET}&language=en-US`,
+  );
+  const [rest, setRest] = useState('');
 
-  useMemo(() => {
-    if (dataSort === 'p_desc') {
-      setUrl(requests.fetchPopularDesc);
-    } else if (dataSort === 'p_asc') {
-      setUrl(requests.fetchPopularAsce);
-    } else if (dataSort === 'rate_desc') {
-      setUrl(requests.fetchRatingDesc);
-    } else if (dataSort === 'rate_asc') {
-      setUrl(requests.fetchRatingAsce);
-    } else if (dataSort === 'rel_desc') {
-      setUrl(requests.fetchReleaseDateDesc);
-    } else if (dataSort === 'rel_asc') {
-      setUrl(requests.fetchReleaseDateAsce);
-    } else if (dataSort === 'title_desc') {
-      setUrl(requests.fetchTitleDesc);
-    } else if (dataSort === 'title_asc') {
-      setUrl(requests.fetchTitleAsce);
+  useEffect(() => {
+    let request;
+
+    if (dataSort === 'release_date.desc' || dataSort === 'release_date.asc') {
+      request = `/discover/movie?sort_by=${dataSort}&region=US&with_release_type=3&${API_SECRET}&language=en-US`;
+      setUrl(request);
+    } else {
+      request = `/discover/movie?sort_by=${dataSort}&${API_SECRET}&language=en-US`;
+      setUrl(request);
     }
   }, [dataSort]);
 
@@ -32,6 +29,8 @@ const FetchContextProvider = ({ children }) => {
     setUrl,
     dataSort,
     setDataSort,
+    rest,
+    setRest,
   };
 
   return (

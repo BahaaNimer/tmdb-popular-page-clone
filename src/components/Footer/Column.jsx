@@ -2,13 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { styles } from '../styles/styles';
 
-const SmallHeader = styled.h5`
-  margin: ${(props) => props.styles.margin.m0};
-  font-size: ${(props) => props.styles.font_size.fs1r};
-  font-weight: bold ${(props) => props.styles.font_weight.b};
-  color: ${(props) => props.styles.color.white};
-`;
-
 const FooterList = styled.ul`
   margin: 2px 0 0 0;
 `;
@@ -25,57 +18,17 @@ const FooterLink = styled.a`
 function Column(props) {
   return (
     <div>
-      <SmallHeader
-        styles={styles}
-        className=''>
-        {props.title}
-      </SmallHeader>
-      <FooterList>
-        <FooterItem styles={styles}>
-          <FooterLink
-            styles={styles}
-            className=''
-            href='/'>
-            {props.link1}
-          </FooterLink>
-        </FooterItem>
-
-        <FooterItem styles={styles}>
-          <FooterLink
-            styles={styles}
-            className=''
-            href='/'>
-            {props.link2}
-          </FooterLink>
-        </FooterItem>
-
-        <FooterItem styles={styles}>
-          <FooterLink
-            styles={styles}
-            className=''
-            href='/'>
-            {props.link3}
-          </FooterLink>
-        </FooterItem>
-
-        <FooterItem styles={styles}>
-          <FooterLink
-            styles={styles}
-            className=''
-            href='/'>
-            {props.link4}
-          </FooterLink>
-        </FooterItem>
-
-        <FooterItem styles={styles}>
-          <FooterLink
-            styles={styles}
-            className=''
-            href='/'>
-            {props.link5}
-          </FooterLink>
-        </FooterItem>
-      </FooterList>
+      {Object.values(props).map((value, index) => (
+        <FooterList key={index}>
+          <FooterItem styles={styles}>
+            <FooterLink
+              styles={styles}
+              href='/'>
+              {value}
+            </FooterLink>
+          </FooterItem>
+        </FooterList>
+      ))}
     </div>
   );
 }

@@ -64,30 +64,27 @@ const ButtonLoadMore = styled.button`
 function Movies() {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
-  const { url } = useFetchContext();
+  const { url, rest, setRest } = useFetchContext();
   const ref = useRef(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      const request = await axios.get(`${url}`);
-      let movieData = request.data.results;
-      setMovies(movieData);
-      return request;
-    }
-    fetchData();
-  }, [url]);
 
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(`${url}&page=${page}`);
       let movieData = request.data.results;
-      setMovies([...movies, ...movieData]);
-
+      if (page === 1) {
+        setMovies(movieData);
+      } else if (rest === 'clicked') {
+        setPage(1);
+        setMovies(movieData);
+        setRest('');
+      } else {
+        setMovies([...movies, ...movieData]);
+      }
       return request;
     }
     fetchData();
     // eslint-disable-next-line
-  }, [page]);
+  }, [url, page]);
 
   const loadMoreHandler = () => {
     ref.current.continuousStart();
@@ -117,8 +114,7 @@ function Movies() {
       />
 
       <MovieItem movies={movies} />
-      <InfiniteLoader
-        onVisited={() => handleVisit()}></InfiniteLoader>
+      <InfiniteLoader onVisited={() => handleVisit()}></InfiniteLoader>
       <ButtonLoadMore
         styles={styles}
         onClick={loadMoreHandler}>

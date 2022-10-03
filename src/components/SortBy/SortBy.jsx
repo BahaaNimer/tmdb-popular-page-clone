@@ -137,7 +137,8 @@ const Select = styled.select`
   border: none;
 
   @media (max-width: ${(props) => props.styles.max_width.w1300x}) {
-    height: ${(props) => props.styles.height.h60x};
+    height: ${(props) => props.styles.height.h55x};
+    line-height: ${(props) => props.styles.line_height.lh};
   }
 
   &:active,
@@ -165,7 +166,7 @@ const Label = styled.label`
 
 const SortBy = () => {
   const [sortBy, setSortBy] = useState('p_desc');
-  const { setDataSort } = useFetchContext();
+  const { setDataSort, setRest } = useFetchContext();
   const ref = useRef(null);
 
   const handleSubmit = (event) => {
@@ -178,6 +179,7 @@ const SortBy = () => {
     setTimeout(() => {
       ref.current.complete();
       setDataSort(data);
+      setRest('clicked');
     }, 500);
   };
 
@@ -211,14 +213,14 @@ const SortBy = () => {
               onChange={handleSubmit}
               name='drop_down'
               id='drop_down'>
-              <option value='p_desc'>Popularity Descending</option>
-              <option value='p_asc'>Popularity Ascending</option>
-              <option value='rate_desc'>Rating Descending</option>
-              <option value='rate_asc'>Rating Ascending</option>
-              <option value='rel_desc'>Release Date Descending</option>
-              <option value='rel_asc'>Release Date Ascending</option>
-              <option value='title_desc'>Title (Z-A)</option>
-              <option value='title_asc'>Title (A-Z)</option>
+              <option value='popularity.desc'>Popularity Descending</option>
+              <option value='popularity.asc'>Popularity Ascending</option>
+              <option value='vote_average.desc'>Rating Descending</option>
+              <option value='vote_average.asc'>Rating Ascending</option>
+              <option value='release_date.desc'>Release Date Descending</option>
+              <option value='release_date.asc'>Release Date Ascending</option>
+              <option value='original_title.desc'>Title (Z-A)</option>
+              <option value='original_title.asc'>Title (A-Z)</option>
             </Select>
           </SelectContainer>
         </Details>
