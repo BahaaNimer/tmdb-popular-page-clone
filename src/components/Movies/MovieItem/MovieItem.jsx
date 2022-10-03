@@ -4,7 +4,7 @@ import { CircularProgressBar } from '@tomik23/react-circular-progress-bar';
 import 'react-loading-skeleton/dist/skeleton.css';
 import LoadingSkeleton from '../../Utilty/loadingSkeleton.js';
 import styled from 'styled-components';
-import { styles } from '../../../styles/styles.js';
+import { styles } from '../../styles/styles.js';
 
 const ProgressBar = styled.span`
   z-index: 1;
@@ -100,7 +100,7 @@ const MovieItem = ({ movies }) => {
         movies.map((movie) => {
           return (
             <Card
-              key={movie.id}
+              key={movie?.id}
               styles={styles}>
               <Icon
                 styles={styles}

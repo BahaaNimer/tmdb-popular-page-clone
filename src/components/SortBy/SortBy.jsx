@@ -3,7 +3,7 @@ import LoadingBar from 'react-top-loading-bar';
 
 import styled from 'styled-components';
 import { useFetchContext } from '../API/fetch';
-import { styles } from '../../styles/styles';
+import { styles } from '../styles/styles';
 
 const SortContainer = styled.div`
   position: relative;

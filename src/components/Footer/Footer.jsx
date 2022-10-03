@@ -2,7 +2,7 @@ import React from 'react';
 import Column from './Column';
 import footerLogo from '../../assets/moviesdb_footer.svg';
 import styled from 'styled-components';
-import { styles } from '../../styles/styles';
+import { styles } from '../styles/styles';
 
 const FooterNav = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ const FooterNav = styled.div`
   padding: ${(props) => props.styles.padding.p9}
     ${(props) => props.styles.padding.p0};
   height: ${(props) => props.styles.height.h50};
-  width: ${(props) => props.styles.width.w100};
+  width: ${(props) => props.styles.width.w80};
   margin-left: ${(props) => props.styles.margin.m20};
 `;
 

@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 import logo from '../../assets/tmbd.svg';
 import styled from 'styled-components';
-import { styles } from '../../styles/styles';
+import { styles } from '../styles/styles';
 
 const Nav = styled.nav`
-  z-index: 5;
-  position: fixed;
+  z-index: 1;
+  ${'' /* position: fixed; */}
   top: 0;
   width: ${(props) => props.styles.width.w100};
   overflow: hidden;

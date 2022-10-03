@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { styles } from '../../styles/styles';
+import { styles } from '../styles/styles';
 
 const SmallHeader = styled.h5`
   margin: ${(props) => props.styles.margin.m0};
