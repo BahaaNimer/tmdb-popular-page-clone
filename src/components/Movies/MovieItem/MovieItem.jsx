@@ -21,7 +21,6 @@ const Icon = styled.img`
     opacity: 0.5;
     border-radius: ${(props) => props.styles.border_radius.br50};
     background-color: ${(props) => props.styles.color.l_blue};
-
   }
 `;
 
@@ -30,6 +29,14 @@ const CardsContainer = styled.div`
   overflow-y: hidden;
   flex-wrap: wrap;
   width: ${(props) => props.styles.width.w100};
+
+  @media (max-width: ${(props) => props.styles.max_width.w680x}) {
+    padding-left: ${(props) => props.styles.padding.p20};
+  }
+
+  @media (max-width: ${(props) => props.styles.max_width.w475x}) {
+    padding-left: ${(props) => props.styles.padding.p10};
+  }
 `;
 
 const Card = styled.div`
@@ -40,6 +47,7 @@ const Card = styled.div`
   width: ${(props) => props.styles.width.w200x};
   height: ${(props) => props.styles.height.h415x};
   border-radius: ${(props) => props.styles.border_radius.br10};
+
   @media (max-width: ${(props) => props.styles.max_width.w475x}) {
     width: ${(props) => props.styles.width.w70};
     margin-left: ${(props) => props.styles.margin.m70x};

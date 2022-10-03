@@ -30,9 +30,9 @@ const Title = styled.h2`
   z-index: 1;
   transform: translate(10px, 70px);
   padding-left: ${(props) => props.styles.padding.p100x};
+  margin-top: ${(props) => props.styles.margin.m0};
 
   @media (max-width: ${(props) => props.styles.max_width.w485x}) {
-    margin-top: ${(props) => props.styles.margin.m50x};
     z-index: 0;
     padding: ${(props) => props.styles.padding.p0};
   }

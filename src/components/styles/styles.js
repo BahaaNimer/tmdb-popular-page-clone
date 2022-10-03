@@ -13,6 +13,8 @@ export const styles = {
     p3: '3%',
     p5: '5%',
     p9: '9%',
+    p10: '10%',
+    p20: '20%',
   },
 
   margin: {
@@ -108,6 +110,7 @@ export const styles = {
     w485x: '485px',
     w530x: '530px',
     w600x: '600px',
+    w680x: '680px',
     w717: '717px',
     w800x: '800px',
     w975x: '975px',
