@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import env from 'react-dotenv';
-const API_KEY = env.API_KEY;
+
+const API_KEY = process.env.REACT_APP_API_KEY;
 const API_SECRET = `api_key=${API_KEY}`;
 
 export const FetchContext = createContext();

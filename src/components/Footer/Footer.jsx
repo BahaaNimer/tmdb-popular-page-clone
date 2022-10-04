@@ -2,28 +2,27 @@ import React from 'react';
 import Column from './Column';
 import footerLogo from '../../assets/moviesdb_footer.svg';
 import styled from 'styled-components';
-import { styles } from '../styles/styles';
+import { color, font_size, font_weight, gap } from '../styles/styles';
 
 const FooterNav = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: ${(props) => props.styles.padding.p9}
-    ${(props) => props.styles.padding.p0};
-  height: ${(props) => props.styles.height.h50};
-  width: ${(props) => props.styles.width.w80};
-  margin-left: ${(props) => props.styles.margin.m20};
+  padding: 9% 0;
+  height: 50%;
+  width: 80%;
+  margin-left: 20%;
 `;
 
 const JoinSection = styled.div`
   position: relative;
-  width: ${(props) => props.styles.width.w30};
+  width: 30%;
   display: flex;
   flex-direction: column;
-  margin-right: ${(props) => props.styles.margin.m2};
-  margin-left: ${(props) => props.styles.margin.m10};
+  margin-right: 2%;
+  margin-left: 10%;
 
-  @media (max-width: ${(props) => props.styles.max_width.w717}) {
+  @media (max-width: 717px) {
     display: none;
   }
 `;
@@ -32,71 +31,71 @@ const Image = styled.img`
   position: relative;
   right: -1px;
   top: -14%;
-  margin-top: ${(props) => props.styles.margin.m5x};
-  margin-bottom: ${(props) => props.styles.margin.m30x};
+  margin-top: 5px;
+  margin-bottom: 30px;
 `;
 
 const JoinButton = styled.a`
-  background-color: white;
-  color: ${(props) => props.styles.color.l_blue};
-  font-weight: ${(props) => props.styles.font_weight.b};
-  font-size: ${(props) => props.styles.font_size.fs1r};
-  border-radius: ${(props) => props.styles.border_radius.br6};
+  background-color: ${color.white};
+  color: ${color.l_blue};
+  font-weight: ${font_weight.b};
+  font-size: ${font_size.fs1r};
+  border-radius: 6px;
   transition: none;
-  border: 2px solid white;
-  padding: ${(props) => props.styles.padding.p10x};
+  border: 2px solid ${color.white};
+  padding: 10px;
   position: relative;
   height: max-content;
   width: max-content;
 
   &:hover {
-    background-color: white;
+    background-color: ${color.white};
   }
 `;
 
 const LinkSection = styled.div`
-  width: ${(props) => props.styles.width.w100};
+  width: 100%;
   display: flex;
-  gap: ${(props) => props.styles.gap.g15x};
+  gap: ${gap.g15x};
 
-  @media (max-width: ${(props) => props.styles.max_width.w717}) {
-    margin: ${(props) => props.styles.margin.m5};
+  @media (max-width: 717px) {
+    margin: 5%;
   }
 `;
 
 const BottomSection = styled.section`
   text-align: center;
-  color: ${(props) => props.styles.color.n_gray};
+  color: ${color.n_gray};
   opacity: 0.3;
-  font-size: ${(props) => props.styles.font_size.fs07};
-  font-weight: ${(props) => props.styles.font_weight.w6};
+  font-size: ${font_size.fs07};
+  font-weight: ${font_weight.w6};
 `;
 
 function Footer() {
   return (
-    <footer className='blue-bg'>
-      <FooterNav
-        styles={styles}
-        className='footer-nav'>
+    <footer
+      role='footer'
+      className='blue-bg'>
+      <FooterNav className='footer-nav'>
         <JoinSection
-          styles={styles}
+          role='joinSection'
           className='join-community'>
           <Image
-            styles={styles}
+            role='img'
             src={footerLogo}
             alt='footer-logo'
             width='130'
             height='94'
           />
           <JoinButton
-            styles={styles}
             className='footer-btn'
-            href='/'>
+            href='/'
+            role='button'>
             JOIN THE COMMUNITY
           </JoinButton>
         </JoinSection>
         <LinkSection
-          styles={styles}
+          role='linkSection'
           className='link-section'>
           <Column
             title='THE BASICS'
@@ -128,7 +127,7 @@ function Footer() {
           />
         </LinkSection>
       </FooterNav>
-      <BottomSection styles={styles}>Build 87863fc (4378)</BottomSection>
+      <BottomSection>Build 87863fc (4378)</BottomSection>
     </footer>
   );
 }

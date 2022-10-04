@@ -6,7 +6,7 @@ import axios from '../API/axios.js';
 import MovieItem from './MovieItem/MovieItem.jsx';
 import { useFetchContext } from '../API/fetch';
 import styled from 'styled-components';
-import { styles } from '../styles/styles.js';
+import { color, font_size, font_weight } from '../styles/styles.js';
 
 const Container = styled.div`
   position: relative;
@@ -15,8 +15,8 @@ const Container = styled.div`
   align-items: center;
   flex-wrap: wrap;
   top: 50px;
-  margin-bottom: ${(props) => props.styles.margin.m50x};
-  width: ${(props) => props.styles.width.w100};
+  margin-bottom: 50px;
+  width: 100%;
 `;
 
 const ButtonLoadMore = styled.button`
@@ -26,38 +26,38 @@ const ButtonLoadMore = styled.button`
   align-items: center;
   transform: translate(-65px, 1px);
   position: relative;
-  margin-top: ${(props) => props.styles.margin.m10x};
-  margin-bottom: ${(props) => props.styles.margin.m3};
-  width: ${(props) => props.styles.width.w95};
-  border-radius: ${(props) => props.styles.border_radius.br10};
-  height: ${(props) => props.styles.height.h45x};
-  background-color: ${(props) => props.styles.color.l_blue};
-  color: ${(props) => props.styles.color.l_white};
-  font-size: x-large;
-  font-weight: ${(props) => props.styles.font_weight.w7};
+  margin-top: 10px;
+  margin-bottom: 3%;
+  width: 95%;
+  border-radius: 10px;
+  height: 45px;
+  background-color: ${color.l_blue};
+  color: ${color.l_white};
+  font-size: ${font_size.xl};
+  font-weight: ${font_weight.w7};
 
   &:hover {
-    background-color: ${(props) => props.styles.color.d_blue};
+    background-color: ${color.d_blue};
   }
 
-  @media (max-width: ${(props) => props.styles.max_width.w1300x}) {
-    margin-left: ${(props) => props.styles.margin.m10};
-    width: ${(props) => props.styles.width.w95};
+  @media (max-width: 1300px) {
+    margin-left: 10%;
+    width: 95%;
   }
 
-  @media (max-width: ${(props) => props.styles.max_width.w800x}) {
-    margin-left: ${(props) => props.styles.margin.m15};
-    width: ${(props) => props.styles.width.w100};
+  @media (max-width: 800px) {
+    margin-left: 15%;
+    width: 100%;
   }
 
-  @media (max-width: ${(props) => props.styles.max_width.w530x}) {
-    margin-left: ${(props) => props.styles.margin.m20};
-    width: ${(props) => props.styles.width.w100};
+  @media (max-width: 530px) {
+    margin-left: 20%;
+    width: 100%;
   }
 
-  @media (max-width: ${(props) => props.styles.max_width.w475x}) {
-    margin-left: ${(props) => props.styles.margin.m30};
-    width: ${(props) => props.styles.width.w100};
+  @media (max-width: 475px) {
+    margin-left: 30%;
+    width: 100%;
   }
 `;
 
@@ -107,19 +107,15 @@ function Movies() {
   };
 
   return (
-    <Container styles={styles}>
+    <Container>
       <LoadingBar
-        color={styles.color.l_blue}
+        color={color.l_blue}
         ref={ref}
       />
 
       <MovieItem movies={movies} />
       <InfiniteLoader onVisited={() => handleVisit()}></InfiniteLoader>
-      <ButtonLoadMore
-        styles={styles}
-        onClick={loadMoreHandler}>
-        Load More
-      </ButtonLoadMore>
+      <ButtonLoadMore onClick={loadMoreHandler}>Load More</ButtonLoadMore>
     </Container>
   );
 }
