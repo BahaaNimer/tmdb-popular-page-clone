@@ -152,12 +152,16 @@ const Bar = styled.div`
 const MovieItem = ({ movies }) => {
   const imageBaseUrl = 'https://image.tmdb.org/t/p/original';
 
+  // console.log('movies', movies);
+
   return (
-    <CardsContainer>
+    <CardsContainer data-testid='card_container'>
       {movies.length ? (
         movies.map((movie) => {
           return (
-            <Card key={movie?.id}>
+            <Card
+              data-testid='card'
+              key={movie?.id}>
               <Icon
                 src='https://img.icons8.com/color/48/000000/connection-status-off--v1.png'
                 alt='moreIcon'

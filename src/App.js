@@ -1,6 +1,5 @@
 import React from 'react';
 
-import FetchContextProvider from './components/API/fetch';
 import Navbar from './components/Navbar/Navbar';
 import Movies from './components/Movies/Movies';
 import Footer from './components/Footer/Footer';
@@ -64,25 +63,23 @@ const MoviesSection = styled.section`
 
 function App() {
   return (
-    <FetchContextProvider>
-      <AppBody>
-        <Navbar />
+    <AppBody>
+      <Navbar />
 
-        <Title>Popular Movies</Title>
+      <Title>Popular Movies</Title>
 
-        <AppHolder>
-          <SortSection>
-            <SortBy />
-          </SortSection>
+      <AppHolder>
+        <SortSection>
+          <SortBy />
+        </SortSection>
 
-          <MoviesSection>
-            <Movies />
-          </MoviesSection>
-        </AppHolder>
+        <MoviesSection>
+          <Movies />
+        </MoviesSection>
+      </AppHolder>
 
-        <Footer />
-      </AppBody>
-    </FetchContextProvider>
+      <Footer />
+    </AppBody>
   );
 }
 

@@ -160,7 +160,7 @@ const Label = styled.label`
 `;
 
 const SortBy = () => {
-  const [sortBy, setSortBy] = useState('p_desc');
+  const [sortBy, setSortBy] = useState('popularity.desc');
   const { setDataSort, setRest } = useFetchContext();
   const ref = useRef(null);
 

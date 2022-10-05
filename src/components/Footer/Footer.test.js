@@ -1,6 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import Footer from './Footer';
@@ -34,7 +33,7 @@ test('should check if the footer button (by role) rendered ', () => {
   const footerButton = screen.getByRole('button');
   expect(footerButton).toBeInTheDocument();
 });
-test('should check if the footer column rendered ', () => {
+test('should check if the footer column rendered ', async () => {
   render(
     <Column
       title={'hi'}
@@ -42,25 +41,29 @@ test('should check if the footer column rendered ', () => {
       link2={'link 2'}
     />,
   );
-  const footerTitle = screen.getByRole('link', { name: /hi/i });
-  const footerLink1 = screen.getByRole('link', { name: /link 1/i });
-  const footerLink2 = screen.getByRole('link', { name: /link 2/i });
+  const footerTitle = await screen.findByRole('link', { name: /hi/i });
+  const footerLink1 = await screen.findByRole('link', { name: /link 1/i });
+  const footerLink2 = await screen.findByRole('link', { name: /link 2/i });
   expect(footerTitle).toBeInTheDocument();
   expect(footerLink1).toBeInTheDocument();
   expect(footerLink2).toBeInTheDocument();
 });
-test('should check if the footer column rendered with existing links ', () => {
+test('should check if the footer column rendered with existing links ', async () => {
   render(<Column />);
-  const footerTitle = screen.getByRole('link', { name: /the basics/i });
-  const footerLink1 = screen.getByRole('link', { name: /about tmdb/i });
-  const footerLink2 = screen.getByRole('link', { name: /contact us/i });
-  const footerLink3 = screen.getByRole('link', { name: /support forums/i });
-  const footerLink4 = screen.getByRole(
+  const footerTitle = await screen.findByRole('link', { name: /the basics/i });
+  const footerLink1 = await screen.findByRole('link', { name: /about tmdb/i });
+  const footerLink2 = await screen.findByRole('link', { name: /contact us/i });
+  const footerLink3 = await screen.findByRole('link', {
+    name: /support forums/i,
+  });
+  const footerLink4 = await screen.findByRole(
     'link',
     { name: 'API' },
     { exact: true },
   );
-  const footerLink5 = screen.getByRole('link', { name: /system status/i });
+  const footerLink5 = await screen.findByRole('link', {
+    name: /system status/i,
+  });
   expect(footerTitle).toBeInTheDocument();
   expect(footerLink1).toBeInTheDocument();
   expect(footerLink2).toBeInTheDocument();
