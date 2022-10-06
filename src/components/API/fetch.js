@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
-const API_SECRET = `api_key=${API_KEY}`;
+export const API_SECRET = `api_key=${API_KEY}`;
 
 export const FetchContext = createContext();
 
@@ -13,15 +13,8 @@ const FetchContextProvider = ({ children }) => {
   const [rest, setRest] = useState('');
 
   useEffect(() => {
-    let request;
-
-    if (dataSort === 'release_date.desc' || dataSort === 'release_date.asc') {
-      request = `/discover/movie?sort_by=${dataSort}&region=US&with_release_type=3&${API_SECRET}&language=en-US`;
-      setUrl(request);
-    } else {
-      request = `/discover/movie?sort_by=${dataSort}&${API_SECRET}&language=en-US`;
-      setUrl(request);
-    }
+    let request = `/discover/movie?sort_by=${dataSort}&${API_SECRET}&language=en-US`;
+    setUrl(request);
   }, [dataSort]);
 
   const urlContext = {

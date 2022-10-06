@@ -63,23 +63,26 @@ const MoviesSection = styled.section`
 
 function App() {
   return (
-    <AppBody>
-      <Navbar />
+    // eslint-disable-next-line
+    <div role='wrapper'>
+      <AppBody>
+        <Navbar />
 
-      <Title>Popular Movies</Title>
+        <Title>Popular Movies</Title>
 
-      <AppHolder>
-        <SortSection>
-          <SortBy />
-        </SortSection>
+        <AppHolder>
+          <SortSection>
+            <SortBy />
+          </SortSection>
 
-        <MoviesSection>
-          <Movies />
-        </MoviesSection>
-      </AppHolder>
+          <MoviesSection>
+            <Movies />
+          </MoviesSection>
+        </AppHolder>
 
-      <Footer />
-    </AppBody>
+        <Footer />
+      </AppBody>
+    </div>
   );
 }
 

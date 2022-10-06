@@ -74,6 +74,7 @@ const BottomSection = styled.section`
 function Footer() {
   return (
     <footer
+    // eslint-disable-next-line
       role='footer'
       className='blue-bg'>
       <FooterNav className='footer-nav'>

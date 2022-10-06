@@ -171,11 +171,9 @@ const SortBy = () => {
   const sendDataHandler = () => {
     const data = localStorage.getItem('sortBy');
     ref.current.continuousStart();
-    setTimeout(() => {
-      ref.current.complete();
-      setDataSort(data);
-      setRest('clicked');
-    }, 500);
+    setDataSort(data);
+    setRest('clicked');
+    ref.current.complete();
   };
 
   useEffect(() => {

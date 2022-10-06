@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import logo from '../../assets/tmbd.svg';
 import styled from 'styled-components';
@@ -91,28 +91,8 @@ const BoxVisible = styled.div`
 `;
 
 function Navbar() {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [hide, setHide] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const position = window.pageYOffset;
-
-      if (position > 50) {
-        setHide(position > scrollPosition);
-        setScrollPosition(position);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [scrollPosition]);
-
   return (
-    <Nav className={`blue-bg ${hide && 'hide-nav'}`}>
+    <Nav className={`blue-bg`}>
       <NavigationBar>
         <NavLogo href='/'>
           <img

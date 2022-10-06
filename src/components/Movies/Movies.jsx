@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import LoadingBar from 'react-top-loading-bar';
 import InfiniteLoader from 'react-infinite-loader';
 
-import axios from '../API/axios.js';
 import MovieItem from './MovieItem/MovieItem.jsx';
+import { useHooks } from '../Utilty/useHooks.js';
+import axios from '../API/axios';
 import { useFetchContext } from '../API/fetch';
 import styled from 'styled-components';
 import { color, font_size, font_weight } from '../styles/styles.js';
@@ -62,10 +63,17 @@ const ButtonLoadMore = styled.button`
 `;
 
 function Movies() {
-  const [movies, setMovies] = useState([]);
-  const [page, setPage] = useState(1);
   const { url, rest, setRest } = useFetchContext();
-  const ref = useRef(null);
+
+  const {
+    handleVisit,
+    loadMoreHandler,
+    movies,
+    page,
+    ref,
+    setMovies,
+    setPage,
+  } = useHooks();
 
   useEffect(() => {
     async function fetchData() {
@@ -85,26 +93,6 @@ function Movies() {
     fetchData();
     // eslint-disable-next-line
   }, [url, page]);
-
-  const loadMoreHandler = () => {
-    ref.current.continuousStart();
-    setTimeout(() => {
-      ref.current.complete();
-      setPage(page + 1);
-    }, 500);
-  };
-
-  const handleVisit = () => {
-    if (page === 1) return;
-    if (page > movies.length) return;
-    if (page > 1) {
-      ref.current.continuousStart();
-      setTimeout(() => {
-        ref.current.complete();
-        setPage(page + 1);
-      }, 500);
-    }
-  };
 
   return (
     <Container>

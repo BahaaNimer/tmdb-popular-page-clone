@@ -20,7 +20,7 @@ function Column(props) {
   return (
     <div>
       {Object.values(props).map((value, index) => (
-        <FooterList key={index}>
+        <FooterList key={index} data-testid='footer_list'>
           <FooterItem>
             <FooterLink href='/'>{value}</FooterLink>
           </FooterItem>

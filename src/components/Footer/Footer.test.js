@@ -75,3 +75,8 @@ test('should check if the footer bottom section rendered ', () => {
   const footerBottomSection = screen.getByText('Build 87863fc (4378)');
   expect(footerBottomSection).toBeInTheDocument();
 });
+
+test('should check if the columns rendered', async () => {
+  const columns = await screen.findAllByTestId('footer_list');
+  expect(columns).toBeDefined();
+});

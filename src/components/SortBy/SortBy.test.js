@@ -1,19 +1,16 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+import { renderHook } from '@testing-library/react-hooks';
+import { useHooks } from '../Utilty/useHooks';
 import FetchContextProvider from '../API/fetch';
 import SortBy from './SortBy';
-
-const MockSubmit = jest.fn();
-const MockSendDataHandler = jest.fn();
+import Movies from '../Movies/Movies';
 
 beforeEach(() => {
   render(
     <FetchContextProvider>
-      <SortBy
-        submit={MockSubmit}
-        sendData={MockSendDataHandler}
-      />
+      <SortBy />
     </FetchContextProvider>,
   );
 });
@@ -70,4 +67,58 @@ test('should check if sort option had the expected value', () => {
   });
 
   expect(sortContainer.value).toBe('popularity.asc');
+});
+
+test('should check if sort option had the expected value', () => {
+  const sortContainer = screen.getByRole('option', {
+    name: 'Release Date Descending',
+  });
+
+  expect(sortContainer.value).toBe('release_date.desc');
+});
+
+test('should check if sort option had the expected value', () => {
+  const sortContainer = screen.getByRole('option', {
+    name: 'Release Date Descending',
+  });
+
+  expect(sortContainer.value).toBe('release_date.desc');
+});
+
+test('should check if sort select is change value after user click as expected', () => {
+  render(
+    <FetchContextProvider>
+      <Movies />
+    </FetchContextProvider>,
+  );
+  const { result } = renderHook(useHooks);
+
+  const button = screen.getByRole('button', { name: 'Load More' });
+  fireEvent.click(button);
+
+  waitFor(() => expect(result.current.page).toBe(2));
+  fireEvent.scroll(window, { y: 100 });
+
+  waitFor(() => expect(cards.length).toBeTruthy());
+
+  fireEvent.scroll(window, { y: 200 });
+  waitFor(() => expect(cards.length).toBeTruthy());
+
+  fireEvent.scroll(window, { y: 1200 });
+  waitFor(() => expect(cards.length).not.toBeTruthy());
+
+  const sortContainer = screen.getByRole('combobox');
+
+  const searchButton = screen.getByRole('button', { name: 'Search' });
+
+  fireEvent.change(sortContainer, { target: { value: 'popularity.asc' } });
+
+  fireEvent.click(searchButton);
+
+  expect(sortContainer.value).toBe('popularity.asc');
+  waitFor(() => expect(result.current.rest).toBe('clicked'));
+
+  waitFor(() => expect(result.current.page).toBe(1));
+  waitFor(() => expect(result.current.movies.length).toBeTruthy());
+  waitFor(() => expect(result.current.rest).toBe(''));
 });

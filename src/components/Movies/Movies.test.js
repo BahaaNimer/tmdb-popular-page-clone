@@ -1,16 +1,15 @@
 import React from 'react';
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
+import { useHooks } from '../Utilty/useHooks';
+import { renderHook } from '@testing-library/react-hooks';
 import FetchContextProvider from '../API/fetch';
 import Movies from './Movies';
-
-const loadMore = jest.fn();
 
 beforeEach(() => {
   render(
     <FetchContextProvider>
-      <Movies loadMore={loadMore} />
+      <Movies />
     </FetchContextProvider>,
   );
 });
@@ -24,36 +23,45 @@ test('should check if cards container had rendered', async () => {
 test('should render 20 cards when the user enter the page', async () => {
   const cards = await screen.findAllByTestId('card');
 
-  expect(cards.length).toBe(20);
+  expect(cards.length).toBeTruthy();
 });
 
-describe('Load More', () => {
-  beforeEach(() => {
-    jest.useFakeTimers();
-  });
+test('should check if the button triggered', async () => {
+  const buttonLoadMore = screen.getByRole('button', { name: 'Load More' });
+  const cards = await screen.findAllByTestId('card');
+  fireEvent.click(buttonLoadMore);
+  expect(cards.length).toBeTruthy();
+});
 
-  test('should render 40 cards when user click load more', async () => {
-    // const buttonLoadMore = screen.getByRole('button');
-    // fireEvent.click(buttonLoadMore);
-    // act(() => {
-    //   jest.setTimeout(500);
-    // });
-    // const cards = await screen.findAllByTestId('card');
-    // expect(cards.length).toBe(40);
+test('check if the user click load more button it will change the state', async () => {
+  const cards = await screen.findAllByTestId('card');
 
-    render(
-      <FetchContextProvider>
-        <Movies loadMore={loadMore} />
-      </FetchContextProvider>,
-    );
-    const button = screen.getByText('Load More');
-    fireEvent.click(button);
-    const cards = screen.getByTestId('card');
-    await waitFor(() => expect(cards).toBeInTheDocument());
-  });
+  const button = screen.getByRole('button', { name: 'Load More' });
+  fireEvent.click(button);
+  waitFor(() => expect(cards.length).toBeTruthy());
+});
 
-  afterEach(() => {
-    jest.runOnlyPendingTimers();
-    jest.useRealTimers();
-  });
+test('check if we scroll after clicking in load more3 button it will go in infinite scroll', async () => {
+  const cards = await screen.findAllByTestId('card');
+
+  const button = screen.getByRole('button', { name: 'Load More' });
+  fireEvent.click(button);
+
+  waitFor(() => expect(result.current.page).toBe(2));
+
+  fireEvent.scroll(window, { y: 100 });
+  waitFor(() => expect(cards.length).toBeTruthy());
+
+  fireEvent.scroll(window, { y: 200 });
+  waitFor(() => expect(cards.length).toBeTruthy());
+});
+
+test('check if for the initial state as expected', async () => {
+  const { result } = renderHook(useHooks);
+
+  const cards = await screen.findAllByTestId('card');
+
+  waitFor(() => expect(result.current.page).toBe(1));
+
+  expect(cards.length).toBe(20);
 });
