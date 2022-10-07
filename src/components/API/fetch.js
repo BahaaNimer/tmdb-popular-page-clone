@@ -1,30 +1,20 @@
-import React, { createContext, useContext, useState, useMemo } from 'react';
-import requests from './requests';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+
+const API_KEY = process.env.REACT_APP_API_KEY;
+export const API_SECRET = `api_key=${API_KEY}`;
 
 export const FetchContext = createContext();
 
 const FetchContextProvider = ({ children }) => {
-  const [url, setUrl] = useState({});
-  const [dataSort, setDataSort] = useState('p_desc');
+  const [dataSort, setDataSort] = useState('popularity.desc');
+  const [url, setUrl] = useState(
+    `/discover/movie?sort_by=${dataSort}&${API_SECRET}&language=en-US`,
+  );
+  const [rest, setRest] = useState('');
 
-  useMemo(() => {
-    if (dataSort === 'p_desc') {
-      setUrl(requests.fetchPopularDesc);
-    } else if (dataSort === 'p_asc') {
-      setUrl(requests.fetchPopularAsce);
-    } else if (dataSort === 'rate_desc') {
-      setUrl(requests.fetchRatingDesc);
-    } else if (dataSort === 'rate_asc') {
-      setUrl(requests.fetchRatingAsce);
-    } else if (dataSort === 'rel_desc') {
-      setUrl(requests.fetchReleaseDateDesc);
-    } else if (dataSort === 'rel_asc') {
-      setUrl(requests.fetchReleaseDateAsce);
-    } else if (dataSort === 'title_desc') {
-      setUrl(requests.fetchTitleDesc);
-    } else if (dataSort === 'title_asc') {
-      setUrl(requests.fetchTitleAsce);
-    }
+  useEffect(() => {
+    let request = `/discover/movie?sort_by=${dataSort}&${API_SECRET}&language=en-US`;
+    setUrl(request);
   }, [dataSort]);
 
   const urlContext = {
@@ -32,6 +22,8 @@ const FetchContextProvider = ({ children }) => {
     setUrl,
     dataSort,
     setDataSort,
+    rest,
+    setRest,
   };
 
   return (

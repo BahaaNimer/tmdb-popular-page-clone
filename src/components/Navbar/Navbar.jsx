@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 
 import logo from '../../assets/tmbd.svg';
 import styled from 'styled-components';
-import { styles } from '../styles/styles';
+import { color, font_size, font_weight, zIndex } from '../styles/styles';
 
 const Nav = styled.nav`
-  z-index: 1;
-  ${'' /* position: fixed; */}
+  z-index: ${zIndex.z1};
   top: 0;
-  width: ${(props) => props.styles.width.w100};
+  width: 100%;
   overflow: hidden;
   transition-timing-function: ease-in;
   transition: all 0.5s;
@@ -20,33 +18,31 @@ const Nav = styled.nav`
 `;
 
 const NavigationBar = styled.div`
-  font-size: ${(props) => props.styles.font_size.fs09r};
-  font-weight: ${(props) => props.styles.font_weight.w6};
-  padding: ${(props) => props.styles.padding.p12x}
-    ${(props) => props.styles.padding.p5};
   display: flex;
+  font-size: ${font_size.fs09r};
+  font-weight: ${font_weight.w6};
+  padding: 12px 5%;
 `;
 
 const NavLogo = styled.a`
-  font-size: ${(props) => props.styles.font_size.fs2r};
-  padding: 0 ${(props) => props.styles.padding.p100x} 0
-    ${(props) => props.styles.padding.p80x};
+  font-size: ${font_size.fs2r};
+  padding: 0 100px 0 80px;
 `;
 
 const NavListContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: ${(props) => props.styles.width.w100};
+  width: 100%;
 
   & ul {
     display: flex;
     list-style: none;
-    width: ${(props) => props.styles.width.w100};
+    width: 100%;
   }
 
   & ul:first-child li {
-    margin-right: ${(props) => props.styles.margin.m3};
+    margin-right: 3%;
   }
 
   & ul:last-child {
@@ -55,75 +51,50 @@ const NavListContainer = styled.div`
   }
 
   & ul:last-child li {
-    margin-left: ${(props) => props.styles.margin.m3};
+    margin-left: 3%;
   }
 
   & ul li a {
-    color: #fff;
+    color: ${color.white};
     white-space: nowrap;
   }
 
   & .toggle_size {
-    @media (max-width: ${(props) => props.styles.max_width.w975x}) {
+    @media (max-width: 975px) {
       display: flex;
     }
   }
   & .toggle {
-    @media (max-width: ${(props) => props.styles.max_width.w975x}) {
+    @media (max-width: 975px) {
       display: none;
     }
   }
 
   & .toggle_size {
-    @media (max-width: ${(props) => props.styles.max_width.w600x}) {
+    @media (max-width: 600px) {
       display: none;
     }
   }
 `;
 
 const BoxVisible = styled.div`
-  width: ${(props) => props.styles.width.w30x};
-  height: ${(props) => props.styles.height.h25x};
+  width: 30px;
+  height: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
-  border: 1px solid #fff;
-  border-radius: ${(props) => props.styles.border_radius.br6};
-  padding: ${(props) => props.styles.padding.p3x}
-    ${(props) => props.styles.padding.p5x};
-  font-size: ${(props) => props.styles.font_size.fs07r};
+  border: 1px solid ${color.white};
+  border-radius: 6px;
+  padding: 3px 5px;
+  font-size: ${font_size.fs07r};
 `;
 
 function Navbar() {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [hide, setHide] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const position = window.pageYOffset;
-
-      if (position > 50) {
-        setHide(position > scrollPosition);
-        setScrollPosition(position);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [scrollPosition]);
-
   return (
-    <Nav
-      styles={styles}
-      className={`blue-bg ${hide && 'hide-nav'}`}>
-      <NavigationBar styles={styles}>
-        <NavLogo
-          styles={styles}
-          href='/'>
+    <Nav className={`blue-bg`}>
+      <NavigationBar>
+        <NavLogo href='/'>
           <img
             src={logo}
             alt='logo'
@@ -132,22 +103,22 @@ function Navbar() {
           />
         </NavLogo>
 
-        <NavListContainer styles={styles}>
+        <NavListContainer>
           <ul className='toggle_size'>
             <li>
-              <Link to='/'>Movies</Link>
+              <a href='/'>Movies</a>
             </li>
 
             <li>
-              <Link to='/'>Tv Shows</Link>
+              <a href='/'>Tv Shows</a>
             </li>
 
             <li>
-              <Link to='/'>People</Link>
+              <a href='/'>People</a>
             </li>
 
             <li>
-              <Link to='/'>More</Link>
+              <a href='/'>More</a>
             </li>
           </ul>
 
@@ -162,7 +133,7 @@ function Navbar() {
 
             <li>
               <a href='/'>
-                <BoxVisible styles={styles}>EN</BoxVisible>
+                <BoxVisible>EN</BoxVisible>
               </a>
             </li>
 

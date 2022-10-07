@@ -25,10 +25,10 @@
     "styled-components": "^5.3.6"
   },
   "scripts": {
-    "start": "react-dotenv && react-scripts start",
-    "build": "react-dotenv && react-scripts build",
-    "serve": "react-dotenv && serve build",
-    "test": "react-scripts test",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "serve": "serve build",
+    "test": "react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject",
     "preDeploy": "npm run build",
     "deploy": "gh-pages -d build"
@@ -51,14 +51,10 @@
       "last 1 safari version"
     ]
   },
-  "react-dotenv": {
-    "whitelist": [
-      "API_KEY"
-    ]
-  },
-  "browser": {
-    "fs": false,
-    "path": false,
-    "os": false
+  "devDependencies": {
+    "@testing-library/react-hooks": "^8.0.1",
+    "dotenv": "^16.0.3",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
   }
 }

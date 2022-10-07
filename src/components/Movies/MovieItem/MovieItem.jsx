@@ -1,27 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CircularProgressBar } from '@tomik23/react-circular-progress-bar';
 import 'react-loading-skeleton/dist/skeleton.css';
 import LoadingSkeleton from '../../Utilty/loadingSkeleton.js';
 import styled from 'styled-components';
-import { styles } from '../../styles/styles.js';
-
-const ProgressBar = styled.span`
-  z-index: 1;
-  transform: translate(10px, -21px);
-`;
+import { color, font_size, font_weight, zIndex } from '../../styles/styles.js';
 
 const Icon = styled.img`
   position: absolute;
-  z-index: 10;
+  z-index: ${zIndex.z10};
   transform: translate(160px, 10px);
   opacity: 0.8;
 
   &:hover {
     opacity: 0.5;
-    border-radius: ${(props) => props.styles.border_radius.br50};
-    background-color: ${(props) => props.styles.color.l_blue};
-
+    border-radius: 50%;
+    background-color: ${color.l_blue};
   }
 `;
 
@@ -29,31 +22,39 @@ const CardsContainer = styled.div`
   display: flex;
   overflow-y: hidden;
   flex-wrap: wrap;
-  width: ${(props) => props.styles.width.w100};
+  width: 100%;
+
+  @media (max-width: 680px) {
+    padding-left: 20%;
+  }
+
+  @media (max-width: 475px) {
+    padding-left: 10%;
+  }
 `;
 
 const Card = styled.div`
-  margin: ${(props) => props.styles.margin.m2};
+  margin: 2%;
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 0 0.26px;
-  width: ${(props) => props.styles.width.w200x};
-  height: ${(props) => props.styles.height.h415x};
-  border-radius: ${(props) => props.styles.border_radius.br10};
-  @media (max-width: ${(props) => props.styles.max_width.w475x}) {
-    width: ${(props) => props.styles.width.w70};
-    margin-left: ${(props) => props.styles.margin.m70x};
+  width: 200px;
+  height: 415px;
+  border-radius: 10px;
+
+  @media (max-width: 475px) {
+    width: 70%;
+    margin-left: 70px;
   }
 `;
 
 const RowPoster = styled.img`
   display: block;
   cursor: pointer;
-  max-width: ${(props) => props.styles.max_width.w100};
-  height: ${(props) => props.styles.height.w320x};
-  max-height: ${(props) => props.styles.height.h100};
-  border-radius: ${(props) => props.styles.border_radius.br10}
-    ${(props) => props.styles.border_radius.br10} 0 0;
+  max-width: 100%;
+  height: 320px;
+  max-height: 100%;
+  border-radius: 10px 10px 0 0;
 
   &:hover {
     cursor: pointer;
@@ -62,24 +63,24 @@ const RowPoster = styled.img`
 `;
 
 const RowPosterContent = styled.div`
-  padding-left: ${(props) => props.styles.padding.p10x};
+  padding-left: 10px;
 `;
 
 const MovieTitle = styled.h3`
   cursor: pointer;
-  font-size: ${(props) => props.styles.font_size.fs09r};
-  font-weight: ${(props) => props.styles.font_weight.w7};
+  font-size: ${font_size.fs09r};
+  font-weight: ${font_weight.w7};
 `;
 
 const MovieDate = styled.p`
-  padding-top: ${(props) => props.styles.padding.p5x};
-  font-size: ${(props) => props.styles.font_size.fs09r};
+  padding-top: 5px;
+  font-size: ${font_size.fs09r};
   color: rgba(0, 0, 0, 0.6);
 `;
 
 const RowPostersBlur = styled.div`
-  width: ${(props) => props.styles.width.w60x};
-  height: ${(props) => props.styles.height.h100};
+  width: 60px;
+  height: 100%;
   position: absolute;
   top: 0;
   right: 0;
@@ -91,26 +92,83 @@ const RowPostersBlur = styled.div`
   pointer-events: none;
 `;
 
+const Bar = styled.div`
+  @keyframes growProgressBar {
+    0% {
+      transform: rotate (0deg);
+    }
+    25% {
+      transform: rotate (${(props) => props.average * 10}deg);
+    }
+    50% {
+      transform: rotate (${(props) => props.average * 10}deg);
+    }
+    75% {
+      transform: rotate (${(props) => props.average * 10}deg);
+    }
+    100% {
+      transform: rotate (${(props) => props.average * 10}deg);
+    }
+  }
+
+  @property --pgPercentage {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+  }
+
+  &[role='progressbar'] {
+    --size: 40px;
+    --fg: ${color.green};
+    --bg: ${color.d_blue};
+    --pgPercentage: ${(props) => props.average * 10};
+    animation: growProgressBar 3s 1 forwards;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: radial-gradient(
+        closest-side,
+        ${color.dd_blue} 80%,
+        transparent 0 99.9%,
+        ${color.dd_blue} 0
+      ),
+      conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0);
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: calc(var(--size) / 4);
+    margin-left: 5px;
+    transform: translate(5px, -16px);
+    color: ${color.white};
+    font-weight: ${font_weight.b};
+  }
+
+  &[role='progressbar']::before {
+    counter-reset: percentage ${(props) => props.average * 10};
+    content: counter(percentage) '%';
+  }
+`;
+
 const MovieItem = ({ movies }) => {
   const imageBaseUrl = 'https://image.tmdb.org/t/p/original';
 
+  // console.log('movies', movies);
+
   return (
-    <CardsContainer styles={styles}>
+    <CardsContainer data-testid='card_container'>
       {movies.length ? (
         movies.map((movie) => {
           return (
             <Card
-              key={movie?.id}
-              styles={styles}>
+              data-testid='card'
+              key={movie?.id}>
               <Icon
-                styles={styles}
                 src='https://img.icons8.com/color/48/000000/connection-status-off--v1.png'
                 alt='moreIcon'
                 width={'24px'}
                 height={'24px'}
               />
               <RowPoster
-                styles={styles}
                 src={
                   movie.poster_path !== null
                     ? `${imageBaseUrl}${movie.poster_path}`
@@ -118,36 +176,20 @@ const MovieItem = ({ movies }) => {
                 }
                 alt={movie.name}
               />
-              <ProgressBar>
-                <CircularProgressBar
-                  styles={styles}
-                  percent={movie.vote_average * 10}
-                  linearGradient={[
-                    `${styles.color.l_green}`,
-                    `${styles.color.green}`,
-                  ]}
-                  colorSlice={`${styles.color.dd_blue}`}
-                  colorCircle={`${styles.color.dd_blue}`}
-                  fontColor={`${styles.color.white}`}
-                  fontSize={`${styles.font_size.fs18r}`}
-                  fontWeight={400}
-                  size={40}
-                  cut={0}
-                  rotation={-90}
-                  opacity={10}
-                  fill={'#032541'}
-                  unit={'%'}
-                  textPosition={`${styles.font_size.fs035}`}
-                />
-              </ProgressBar>
-              <RowPosterContent styles={styles}>
-                <MovieTitle styles={styles}>
+              <Bar
+                role={'progressbar'}
+                aria-valuenow={movie.vote_average * 10}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                average={movie.vote_average}></Bar>
+              <RowPosterContent>
+                <MovieTitle>
                   {movie?.title ||
                     movie?.original_title ||
                     movie?.name ||
                     movie?.original_name}
                 </MovieTitle>
-                <MovieDate styles={styles}>{movie?.release_date}</MovieDate>
+                <MovieDate>{movie?.release_date}</MovieDate>
               </RowPosterContent>
             </Card>
           );
@@ -157,7 +199,7 @@ const MovieItem = ({ movies }) => {
           <LoadingSkeleton />
         </div>
       )}
-      <RowPostersBlur styles={styles}></RowPostersBlur>
+      <RowPostersBlur></RowPostersBlur>
     </CardsContainer>
   );
 };
