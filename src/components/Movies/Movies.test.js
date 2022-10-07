@@ -42,9 +42,13 @@ test('check if the user click load more button it will change the state', async 
 });
 
 test('check if we scroll after clicking in load more3 button it will go in infinite scroll', async () => {
+  const { result } = renderHook(useHooks);
+
   const cards = await screen.findAllByTestId('card');
 
   const button = screen.getByRole('button', { name: 'Load More' });
+  waitFor(() => expect(result.current.page).toBe(1));
+
   fireEvent.click(button);
 
   waitFor(() => expect(result.current.page).toBe(2));
@@ -54,6 +58,11 @@ test('check if we scroll after clicking in load more3 button it will go in infin
 
   fireEvent.scroll(window, { y: 200 });
   waitFor(() => expect(cards.length).toBeTruthy());
+
+  fireEvent.scroll(window, { y: 1200 });
+  waitFor(() => expect(result.current.page).toBeGreaterThan(1));
+
+  waitFor(() => expect(cards.length).not.toBeTruthy());
 });
 
 test('check if for the initial state as expected', async () => {

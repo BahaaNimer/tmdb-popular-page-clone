@@ -85,7 +85,7 @@ test('should check if sort option had the expected value', () => {
   expect(sortContainer.value).toBe('release_date.desc');
 });
 
-test('should check if sort select is change value after user click as expected', () => {
+test('should check if sort select is change value after user click as expected', async () => {
   render(
     <FetchContextProvider>
       <Movies />
@@ -94,6 +94,9 @@ test('should check if sort select is change value after user click as expected',
   const { result } = renderHook(useHooks);
 
   const button = screen.getByRole('button', { name: 'Load More' });
+
+  const cards = await screen.findAllByTestId('card');
+
   fireEvent.click(button);
 
   waitFor(() => expect(result.current.page).toBe(2));
@@ -103,9 +106,6 @@ test('should check if sort select is change value after user click as expected',
 
   fireEvent.scroll(window, { y: 200 });
   waitFor(() => expect(cards.length).toBeTruthy());
-
-  fireEvent.scroll(window, { y: 1200 });
-  waitFor(() => expect(cards.length).not.toBeTruthy());
 
   const sortContainer = screen.getByRole('combobox');
 
