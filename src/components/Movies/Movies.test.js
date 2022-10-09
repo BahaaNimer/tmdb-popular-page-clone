@@ -15,16 +15,15 @@ beforeEach(() => {
 });
 
 test('should check if cards container had rendered', async () => {
-  const cardsContainer = await screen.findByTestId('card_container');
+  const cardsContainer = await screen.findByTestId('cardContainer');
 
   expect(cardsContainer).toBeInTheDocument();
-});
 
-test('should render 20 cards when the user enter the page', async () => {
   const cards = await screen.findAllByTestId('card');
 
   expect(cards.length).toBeTruthy();
 });
+
 
 test('should check if the button triggered', async () => {
   const buttonLoadMore = screen.getByRole('button', { name: 'Load More' });

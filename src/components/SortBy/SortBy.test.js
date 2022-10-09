@@ -15,30 +15,36 @@ beforeEach(() => {
   );
 });
 
-test('should check if sort label rendered', () => {
+test('should check if sort section rendered', () => {
   const sortContainer = screen.getByLabelText('Sort Results By');
 
   expect(sortContainer).toBeInTheDocument();
-});
 
-test('should check if sort details is open', () => {
-  const sortContainer = screen.getByRole('group');
+  const sortDetails = screen.getByRole('group');
 
-  expect(sortContainer.attributes.getNamedItem('open')).toBeTruthy();
-});
+  expect(sortDetails.attributes.getNamedItem('open')).toBeTruthy();
 
-test('should check if sort select is rendered', () => {
-  const sortContainer = screen.getByRole('combobox', {
+  const sortSelect = screen.getByRole('combobox', {
     name: 'Sort Results By',
   });
 
-  expect(sortContainer).toBeTruthy();
-});
+  expect(sortSelect).toBeTruthy();
 
-test('should check if sort select is default value as expected', () => {
-  const sortContainer = screen.getByRole('combobox');
+  const sortSelectValue = screen.getByRole('combobox');
 
-  expect(sortContainer.value).toBe('popularity.desc');
+  expect(sortSelectValue.value).toBe('popularity.desc');
+
+  const sortOption = screen.getByRole('option', {
+    name: 'Popularity Ascending',
+  });
+
+  expect(sortOption.value).toBe('popularity.asc');
+
+  const sortOptionValue = screen.getByRole('option', {
+    name: 'Release Date Descending',
+  });
+
+  expect(sortOptionValue.value).toBe('release_date.desc');
 });
 
 test('should check if sort select is change value before user click as expected', () => {
@@ -59,30 +65,6 @@ test('should check if sort select is change value after user click as expected',
   fireEvent.click(searchButton);
 
   expect(sortContainer.value).toBe('popularity.asc');
-});
-
-test('should check if sort option had the expected value', () => {
-  const sortContainer = screen.getByRole('option', {
-    name: 'Popularity Ascending',
-  });
-
-  expect(sortContainer.value).toBe('popularity.asc');
-});
-
-test('should check if sort option had the expected value', () => {
-  const sortContainer = screen.getByRole('option', {
-    name: 'Release Date Descending',
-  });
-
-  expect(sortContainer.value).toBe('release_date.desc');
-});
-
-test('should check if sort option had the expected value', () => {
-  const sortContainer = screen.getByRole('option', {
-    name: 'Release Date Descending',
-  });
-
-  expect(sortContainer.value).toBe('release_date.desc');
 });
 
 test('should check if sort select is change value after user click as expected', async () => {
@@ -121,32 +103,4 @@ test('should check if sort select is change value after user click as expected',
   waitFor(() => expect(result.current.page).toBe(1));
   waitFor(() => expect(result.current.movies.length).toBeTruthy());
   waitFor(() => expect(result.current.rest).toBe(''));
-});
-
-test('should check the result in the console if its match ', async () => {
-  render(
-    <FetchContextProvider>
-      <Movies />
-    </FetchContextProvider>,
-  );
-
-  jest.spyOn(console, 'log');
-
-  const button = screen.getByRole('button', { name: 'Load More' });
-
-  waitFor(() => expect(console.log).toBe(1));
-
-  fireEvent.click(button);
-
-  fireEvent.scroll(window, { y: 100 });
-
-  fireEvent.scroll(window, { y: 1200 });
-
-  waitFor(() => expect(console.log).toBe('greater than movies length'));
-
-  const searchButton = screen.getByRole('button', { name: 'Search' });
-
-  fireEvent.click(searchButton);
-
-  waitFor(() => expect(console.log).toBe(1));
 });

@@ -3,7 +3,7 @@ import LoadingBar from 'react-top-loading-bar';
 
 import styled from 'styled-components';
 import { useFetchContext } from '../API/fetch';
-import { color, font_size, font_weight, font_family } from '../styles/styles';
+import { color, fontSize, fontWeight, fontFamily } from '../styles/styles';
 
 const SortContainer = styled.div`
   position: relative;
@@ -34,15 +34,15 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   transform: translate(10px, 160px);
-  background-color: ${color.l_blue};
+  background-color: ${color.lBlue};
   border-radius: 15px;
-  color: ${color.l_white};
-  font-size: ${font_size.l};
-  font-weight: ${font_weight.w7};
+  color: ${color.lWhite};
+  font-size: ${fontSize.l};
+  font-weight: ${fontWeight.w7};
   height: 40px;
 
   &:hover {
-    background-color: ${color.d_blue};
+    background-color: ${color.dBlue};
   }
 
   @media (max-width: 1300px) {
@@ -74,7 +74,7 @@ const Details = styled.details`
     padding-left: 15px;
     height: 60px;
     width: 80%;
-    box-shadow: 0px 0px 4px ${color.l_gray};
+    box-shadow: 0px 0px 4px ${color.lGray};
     border-radius: 6px 6px 0px 0px;
     cursor: pointer;
     list-style: none;
@@ -106,7 +106,7 @@ const SelectContainer = styled.div`
   width: 80%;
   padding: 10px;
   border-radius: 0px 0px 6px 6px;
-  box-shadow: 0px 0px 4px ${color.l_gray};
+  box-shadow: 0px 0px 4px ${color.lGray};
 
   @media (max-width: 1300px) {
     width: 97%;
@@ -121,14 +121,14 @@ const SelectContainer = styled.div`
 const Select = styled.select`
   display: flex;
   padding: 2%;
-  box-shadow: 0px 0px 4px ${color.l_gray};
+  box-shadow: 0px 0px 4px ${color.lGray};
   border: none;
   border-radius: 6px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 5px 5px 5px 0px;
-  background-color: ${color.l_gray};
+  background-color: ${color.lGray};
   height: 40px;
 
   @media (max-width: 1300px) {
@@ -154,9 +154,9 @@ const Label = styled.label`
   display: inline-flex;
   align-items: center;
   padding: 15px;
-  font-family: ${font_family.ssp}, ${font_family.ar}, ${font_family.ssf};
-  font-size: ${font_size.fs1};
-  font-weight: ${font_weight.w3};
+  font-family: ${fontFamily.ssp}, ${fontFamily.ar}, ${fontFamily.ssf};
+  font-size: ${fontSize.fs1};
+  font-weight: ${fontWeight.w3};
 `;
 
 const SortBy = () => {
@@ -183,18 +183,18 @@ const SortBy = () => {
   return (
     <>
       <LoadingBar
-        color={color.l_blue}
+        color={color.lBlue}
         ref={ref}
       />
-      <SortContainer className='sort_container'>
+      <SortContainer className='sortContainer'>
         <Details open>
           <summary>Sort By</summary>
-          <SelectContainer className='select_container'>
-            <Label htmlFor='drop_down'>Sort Results By</Label>
+          <SelectContainer className='selectContainer'>
+            <Label htmlFor='dropDown'>Sort Results By</Label>
             <Select
               onChange={handleSubmit}
-              name='drop_down'
-              id='drop_down'>
+              name='dropDown'
+              id='dropDown'>
               <option value='popularity.desc'>Popularity Descending</option>
               <option value='popularity.asc'>Popularity Ascending</option>
               <option value='vote_average.desc'>Rating Descending</option>

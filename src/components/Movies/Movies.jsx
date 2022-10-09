@@ -7,7 +7,7 @@ import { useHooks } from '../Utilty/useHooks.js';
 import axios from '../API/axios';
 import { useFetchContext } from '../API/fetch';
 import styled from 'styled-components';
-import { color, font_size, font_weight } from '../styles/styles.js';
+import { color, fontSize, fontWeight } from '../styles/styles.js';
 
 const Container = styled.div`
   position: relative;
@@ -32,13 +32,13 @@ const ButtonLoadMore = styled.button`
   width: 95%;
   border-radius: 10px;
   height: 45px;
-  background-color: ${color.l_blue};
-  color: ${color.l_white};
-  font-size: ${font_size.xl};
-  font-weight: ${font_weight.w7};
+  background-color: ${color.lBlue};
+  color: ${color.lWhite};
+  font-size: ${fontSize.xl};
+  font-weight: ${fontWeight.w7};
 
   &:hover {
-    background-color: ${color.d_blue};
+    background-color: ${color.dBlue};
   }
 
   @media (max-width: 1300px) {
@@ -111,7 +111,7 @@ function Movies() {
   return (
     <Container>
       <LoadingBar
-        color={color.l_blue}
+        color={color.lBlue}
         ref={ref}
       />
 

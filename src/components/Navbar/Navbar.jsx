@@ -2,7 +2,7 @@ import React from 'react';
 
 import logo from '../../assets/tmbd.svg';
 import styled from 'styled-components';
-import { color, font_size, font_weight, zIndex } from '../styles/styles';
+import { color, fontSize, fontWeight, zIndex } from '../styles/styles';
 
 const Nav = styled.nav`
   z-index: ${zIndex.z1};
@@ -19,13 +19,13 @@ const Nav = styled.nav`
 
 const NavigationBar = styled.div`
   display: flex;
-  font-size: ${font_size.fs09r};
-  font-weight: ${font_weight.w6};
+  font-size: ${fontSize.fs09r};
+  font-weight: ${fontWeight.w6};
   padding: 12px 5%;
 `;
 
 const NavLogo = styled.a`
-  font-size: ${font_size.fs2r};
+  font-size: ${fontSize.fs2r};
   padding: 0 100px 0 80px;
 `;
 
@@ -59,7 +59,7 @@ const NavListContainer = styled.div`
     white-space: nowrap;
   }
 
-  & .toggle_size {
+  & .toggleSize {
     @media (max-width: 975px) {
       display: flex;
     }
@@ -70,7 +70,7 @@ const NavListContainer = styled.div`
     }
   }
 
-  & .toggle_size {
+  & .toggleSize {
     @media (max-width: 600px) {
       display: none;
     }
@@ -87,12 +87,12 @@ const BoxVisible = styled.div`
   border: 1px solid ${color.white};
   border-radius: 6px;
   padding: 3px 5px;
-  font-size: ${font_size.fs07r};
+  font-size: ${fontSize.fs07r};
 `;
 
 function Navbar() {
   return (
-    <Nav className={`blue-bg`}>
+    <Nav className={`blueBg`}>
       <NavigationBar>
         <NavLogo href='/'>
           <img
@@ -104,7 +104,7 @@ function Navbar() {
         </NavLogo>
 
         <NavListContainer>
-          <ul className='toggle_size'>
+          <ul className='toggleSize'>
             <li>
               <a href='/'>Movies</a>
             </li>

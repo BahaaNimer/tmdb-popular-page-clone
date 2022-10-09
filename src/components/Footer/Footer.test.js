@@ -10,29 +10,14 @@ beforeEach(() => {
 });
 
 test('should check if the footer rendered ', () => {
-  const footer = screen.getByRole('footer');
-  expect(footer).toBeInTheDocument();
-});
-test('should check if the join section rendered ', () => {
-  const joinSection = screen.getByRole('joinSection');
-  expect(joinSection).toBeInTheDocument();
-});
-test('should check if the footer link section rendered ', () => {
-  const linkSection = screen.getByRole('linkSection');
-  expect(linkSection).toBeInTheDocument();
-});
-test('should check if the footer image rendered ', () => {
-  const footerImage = screen.getByRole('img');
-  expect(footerImage).toBeInTheDocument();
-});
-test('should check if the button (by text) rendered ', () => {
+  const footer = screen.getByRole('contentinfo');
+  const footerImage = screen.getByRole('img', { name: 'footer-logo' });
   const footerButton = screen.getByText('JOIN THE COMMUNITY');
+  expect(footer).toBeInTheDocument();
+  expect(footerImage).toBeInTheDocument();
   expect(footerButton).toBeInTheDocument();
 });
-test('should check if the footer button (by role) rendered ', () => {
-  const footerButton = screen.getByRole('button');
-  expect(footerButton).toBeInTheDocument();
-});
+
 test('should check if the footer column rendered ', async () => {
   render(
     <Column
@@ -48,6 +33,7 @@ test('should check if the footer column rendered ', async () => {
   expect(footerLink1).toBeInTheDocument();
   expect(footerLink2).toBeInTheDocument();
 });
+
 test('should check if the footer column rendered with existing links ', async () => {
   render(<Column />);
   const footerTitle = await screen.findByRole('link', { name: /the basics/i });
@@ -71,12 +57,13 @@ test('should check if the footer column rendered with existing links ', async ()
   expect(footerLink4).toBeInTheDocument();
   expect(footerLink5).toBeInTheDocument();
 });
+
 test('should check if the footer bottom section rendered ', () => {
   const footerBottomSection = screen.getByText('Build 87863fc (4378)');
   expect(footerBottomSection).toBeInTheDocument();
 });
 
 test('should check if the columns rendered', async () => {
-  const columns = await screen.findAllByTestId('footer_list');
+  const columns = await screen.findAllByTestId('footerList');
   expect(columns).toBeDefined();
 });

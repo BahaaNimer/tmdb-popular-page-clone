@@ -2,7 +2,7 @@ import React from 'react';
 import Column from './Column';
 import footerLogo from '../../assets/moviesdb_footer.svg';
 import styled from 'styled-components';
-import { color, font_size, font_weight, gap } from '../styles/styles';
+import { color, fontSize, fontWeight, gap } from '../styles/styles';
 
 const FooterNav = styled.div`
   display: flex;
@@ -37,9 +37,9 @@ const Image = styled.img`
 
 const JoinButton = styled.a`
   background-color: ${color.white};
-  color: ${color.l_blue};
-  font-weight: ${font_weight.b};
-  font-size: ${font_size.fs1r};
+  color: ${color.lBlue};
+  font-weight: ${fontWeight.b};
+  font-size: ${fontSize.fs1r};
   border-radius: 6px;
   transition: none;
   border: 2px solid ${color.white};
@@ -65,39 +65,30 @@ const LinkSection = styled.div`
 
 const BottomSection = styled.section`
   text-align: center;
-  color: ${color.n_gray};
+  color: ${color.nGray};
   opacity: 0.3;
-  font-size: ${font_size.fs07};
-  font-weight: ${font_weight.w6};
+  font-size: ${fontSize.fs07};
+  font-weight: ${fontWeight.w6};
 `;
 
 function Footer() {
   return (
-    <footer
-    // eslint-disable-next-line
-      role='footer'
-      className='blue-bg'>
-      <FooterNav className='footer-nav'>
-        <JoinSection
-          role='joinSection'
-          className='join-community'>
+    <footer className='blueBg'>
+      <FooterNav className='footerNav'>
+        <JoinSection className='joinCommunity'>
           <Image
-            role='img'
             src={footerLogo}
             alt='footer-logo'
             width='130'
             height='94'
           />
           <JoinButton
-            className='footer-btn'
-            href='/'
-            role='button'>
+            className='footerBtn'
+            href='/'>
             JOIN THE COMMUNITY
           </JoinButton>
         </JoinSection>
-        <LinkSection
-          role='linkSection'
-          className='link-section'>
+        <LinkSection className='linkSection'>
           <Column
             title='THE BASICS'
             link1='About TMDb'

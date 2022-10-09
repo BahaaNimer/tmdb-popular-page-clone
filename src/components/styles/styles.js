@@ -1,16 +1,16 @@
 export const color = {
-  d_blue: '#032541',
-  l_blue: '#01b4e4',
+  dBlue: '#032541',
+  lBlue: '#01b4e4',
   white: '#fff',
-  l_white: '#eee',
-  l_gray: '#ced3db',
-  n_gray: 'gray',
+  lWhite: '#eee',
+  lGray: '#ced3db',
+  nGray: 'gray',
   green: '#1fb76d',
-  l_green: '#18cdb5',
-  dd_blue: '#081c22',
+  lGreen: '#18cdb5',
+  ddBlue: '#081c22',
 };
 
-export const font_size = {
+export const fontSize = {
   fs07r: '0.7rem',
   fs1r: '1rem',
   fs09r: '0.9rem',
@@ -23,7 +23,7 @@ export const font_size = {
   xl: 'x-large',
 };
 
-export const font_weight = {
+export const fontWeight = {
   b: 'bold',
   w3: 300,
   w4: 400,
@@ -31,7 +31,7 @@ export const font_weight = {
   w7: 700,
 };
 
-export const font_family = {
+export const fontFamily = {
   ssp: 'Source Sans Pro',
   ar: 'Arial',
   ssf: 'sans-serif',

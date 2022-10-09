@@ -9,7 +9,7 @@ export default function LoadingSkeleton() {
       {[...Array(20)].map((e, i) => (
         <div
           key={i}
-          className='scroller_wrap'
+          className='scrollerWrap'
           style={{ margin: '5px 10px' }}>
           <span>
             <Skeleton

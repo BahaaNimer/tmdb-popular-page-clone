@@ -13,7 +13,7 @@ beforeEach(() => {
   );
 });
 
-test('should first', async () => {
-  const app = screen.getByRole('wrapper');
-  expect(app).toBeInTheDocument();
+test('should check if components rendered', async () => {
+  const app = screen.getByTestId('wrapper');
+  expect(app).toBeDefined();
 });

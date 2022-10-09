@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import 'react-loading-skeleton/dist/skeleton.css';
 import LoadingSkeleton from '../../Utilty/loadingSkeleton.js';
 import styled from 'styled-components';
-import { color, font_size, font_weight, zIndex } from '../../styles/styles.js';
+import { color, fontSize, fontWeight, zIndex } from '../../styles/styles.js';
 
 const Icon = styled.img`
   position: absolute;
@@ -14,7 +14,7 @@ const Icon = styled.img`
   &:hover {
     opacity: 0.5;
     border-radius: 50%;
-    background-color: ${color.l_blue};
+    background-color: ${color.lBlue};
   }
 `;
 
@@ -68,13 +68,13 @@ const RowPosterContent = styled.div`
 
 const MovieTitle = styled.h3`
   cursor: pointer;
-  font-size: ${font_size.fs09r};
-  font-weight: ${font_weight.w7};
+  font-size: ${fontSize.fs09r};
+  font-weight: ${fontWeight.w7};
 `;
 
 const MovieDate = styled.p`
   padding-top: 5px;
-  font-size: ${font_size.fs09r};
+  font-size: ${fontSize.fs09r};
   color: rgba(0, 0, 0, 0.6);
 `;
 
@@ -120,7 +120,7 @@ const Bar = styled.div`
   &[role='progressbar'] {
     --size: 40px;
     --fg: ${color.green};
-    --bg: ${color.d_blue};
+    --bg: ${color.dBlue};
     --pgPercentage: ${(props) => props.average * 10};
     animation: growProgressBar 3s 1 forwards;
     width: var(--size);
@@ -130,9 +130,9 @@ const Bar = styled.div`
     place-items: center;
     background: radial-gradient(
         closest-side,
-        ${color.dd_blue} 80%,
+        ${color.ddBlue} 80%,
         transparent 0 99.9%,
-        ${color.dd_blue} 0
+        ${color.ddBlue} 0
       ),
       conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0);
     font-family: Helvetica, Arial, sans-serif;
@@ -140,7 +140,7 @@ const Bar = styled.div`
     margin-left: 5px;
     transform: translate(5px, -16px);
     color: ${color.white};
-    font-weight: ${font_weight.b};
+    font-weight: ${fontWeight.b};
   }
 
   &[role='progressbar']::before {
@@ -152,10 +152,8 @@ const Bar = styled.div`
 const MovieItem = ({ movies }) => {
   const imageBaseUrl = 'https://image.tmdb.org/t/p/original';
 
-  // console.log('movies', movies);
-
   return (
-    <CardsContainer data-testid='card_container'>
+    <CardsContainer data-testid='cardContainer'>
       {movies.length ? (
         movies.map((movie) => {
           return (
