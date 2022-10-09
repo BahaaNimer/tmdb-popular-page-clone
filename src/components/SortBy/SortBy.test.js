@@ -122,3 +122,31 @@ test('should check if sort select is change value after user click as expected',
   waitFor(() => expect(result.current.movies.length).toBeTruthy());
   waitFor(() => expect(result.current.rest).toBe(''));
 });
+
+test('should check the result in the console if its match ', async () => {
+  render(
+    <FetchContextProvider>
+      <Movies />
+    </FetchContextProvider>,
+  );
+
+  jest.spyOn(console, 'log');
+
+  const button = screen.getByRole('button', { name: 'Load More' });
+
+  waitFor(() => expect(console.log).toBe(1));
+
+  fireEvent.click(button);
+
+  fireEvent.scroll(window, { y: 100 });
+
+  fireEvent.scroll(window, { y: 1200 });
+
+  waitFor(() => expect(console.log).toBe('greater than movies length'));
+
+  const searchButton = screen.getByRole('button', { name: 'Search' });
+
+  fireEvent.click(searchButton);
+
+  waitFor(() => expect(console.log).toBe(1));
+});

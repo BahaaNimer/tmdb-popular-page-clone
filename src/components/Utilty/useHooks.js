@@ -12,8 +12,8 @@ export const useHooks = () => {
   };
 
   const handleVisit = () => {
-    if (page === 1) return;
-    if (page > movies.length) return;
+    if (page === 1) return console.log(1);
+    if (page > movies.length) return console.log('greater than movies length');
     if (page > 1) {
       ref.current.continuousStart();
       setPage(page + 1);
