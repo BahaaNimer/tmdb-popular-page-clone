@@ -32,7 +32,6 @@ function Column(props) {
   );
 }
 
-//TODO:  Implement props check with props prototypes
 Column.propTypes = {
   props: PropTypes.object,
 };

@@ -63,7 +63,6 @@ const MoviesSection = styled.section`
 
 function App() {
   return (
-    // eslint-disable-next-line
     <div data-testid='wrapper'>
       <AppBody>
         <Navbar />

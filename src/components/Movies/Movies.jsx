@@ -74,21 +74,6 @@ function Movies() {
     setPage,
   } = useHooks();
 
-  // const options = {};
-
-  // const observer = new IntersectionObserver((entries, observer) => {
-  //   entries.forEach((entry) => {
-  //     if (entry?.isIntersecting) {
-  //       observer.unobserve(entry.target);
-  //       handleVisit();
-  //     }
-  //   });
-  // }, options);
-
-  // const spanLoadMore = document.querySelector('.sectionLoadMore');
-
-  // observer.observe(spanLoadMore);
-
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(`${url}&page=${page}`);
@@ -116,7 +101,6 @@ function Movies() {
       />
 
       <MovieItem movies={movies} />
-      {/* <section className='sectionLoadMore'></section> */}
       <InfiniteLoader onVisited={() => handleVisit()}></InfiniteLoader>
       <ButtonLoadMore onClick={loadMoreHandler}>Load More</ButtonLoadMore>
     </Container>
