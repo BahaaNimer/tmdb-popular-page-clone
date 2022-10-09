@@ -64,7 +64,6 @@ const ButtonLoadMore = styled.button`
 
 function Movies() {
   const { url, rest, setRest } = useFetchContext();
-
   const {
     handleVisit,
     loadMoreHandler,
@@ -74,6 +73,21 @@ function Movies() {
     setMovies,
     setPage,
   } = useHooks();
+
+  // const options = {};
+
+  // const observer = new IntersectionObserver((entries, observer) => {
+  //   entries.forEach((entry) => {
+  //     if (entry?.isIntersecting) {
+  //       observer.unobserve(entry.target);
+  //       handleVisit();
+  //     }
+  //   });
+  // }, options);
+
+  // const spanLoadMore = document.querySelector('.sectionLoadMore');
+
+  // observer.observe(spanLoadMore);
 
   useEffect(() => {
     async function fetchData() {
@@ -102,6 +116,7 @@ function Movies() {
       />
 
       <MovieItem movies={movies} />
+      {/* <section className='sectionLoadMore'></section> */}
       <InfiniteLoader onVisited={() => handleVisit()}></InfiniteLoader>
       <ButtonLoadMore onClick={loadMoreHandler}>Load More</ButtonLoadMore>
     </Container>
